@@ -23,7 +23,8 @@ class EmotionPrediction:
         ]
 
     def predict(self, sentence) -> str:
-        pass
+        # enter your model here!
+        return
 
     def analyze_sentence(self) -> str:
         predicted_emotion = self.predict(self.sentence)
