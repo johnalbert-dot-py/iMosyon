@@ -22,5 +22,9 @@ class EmotionPrediction:
             "Disgust",
         ]
 
-    def predict(self) -> str:
+    def predict(self, sentence) -> str:
         pass
+
+    def analyze_sentence(self) -> str:
+        predicted_emotion = self.predict(self.sentence)
+        return predicted_emotion.capitalize()
