@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Optional
 
 
 @dataclass
@@ -8,7 +9,7 @@ class EmotionPrediction:
     A Class for a prediction of an emotion.
     """
 
-    sentence: str
+    sentence: Optional[str] = ""
 
     def expected_emotions(self):
         """Eight primary emotion base on research"""
@@ -22,10 +23,11 @@ class EmotionPrediction:
             "Disgust",
         ]
 
-    def predict(self, sentence) -> str:
+    def predict(self) -> str:
         # enter your model here!
-        return
+        sentence = self.sentence
+        return ""
 
     def analyze_sentence(self) -> str:
-        predicted_emotion = self.predict(self.sentence)
+        predicted_emotion = self.predict()
         return predicted_emotion.capitalize()
