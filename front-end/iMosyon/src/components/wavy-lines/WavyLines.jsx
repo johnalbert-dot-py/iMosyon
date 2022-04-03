@@ -1,5 +1,5 @@
 import wavyImg from '@/assets/wavy-lines.svg';
-import wavyImgLarge from '@/assets/large-wavy-lines.svg';
+import wavyImgLarge from '@/assets/wavy-lines-lg.svg';
 import './wavyline.scss'
 
 
