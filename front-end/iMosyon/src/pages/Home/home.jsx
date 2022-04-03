@@ -4,9 +4,10 @@ import { BtnLight, BtnLightCircleOutline } from '@/components/buttons/button.jsx
 import SystemStep from '@/components/home/system-step.jsx';
 import Navbar from "@/components/navbar/navbar";
 import Footer from '@/components/home/footer.jsx';
-import {WavyLines, WavyLinesLarge, WavyLinesLeftAndRight} from '@/components/home/wavy-lines/WavyLines.jsx';
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { motion } from 'framer-motion'
+import {WavyLines, WavyLinesLarge, WavyLinesLeftAndRight} from '@/components/home/wavy-lines/WavyLines.jsx';
 
 export default function Home() {
   useEffect(() => {
@@ -23,7 +24,16 @@ export default function Home() {
               <WavyLines />
               <WavyLinesLarge />
               <WavyLinesLeftAndRight/>
-              <div className="contents">
+              <motion.div className="contents" animate={{
+                y: 0,
+                opacity: 1,
+                transition: {
+                  duration: .8,
+                }
+              }} initial={{
+                y: 50,
+                opacity: 0
+              }}>
                 <span>
                   iMosyon
                 </span>
@@ -31,15 +41,24 @@ export default function Home() {
                   Let’s predict emotion
                   through sentences.
                 </h1>
-              </div>
-              <div className="action">
+              </motion.div>
+              <motion.div className="action" animate={{
+                y: 0,
+                opacity: 1,
+                transition: {
+                  duration: .5,
+                }
+              }} initial={{
+                y: 50,
+                opacity: 0
+              }}>
                 <p>
                   Start sign-up to fully experience our Emotion Prediction system.
                 </p>
                 <BtnLight size="btn-md" width="btn-lg-w" show_on_small="true">
                   Get Started
                 </BtnLight>
-              </div>
+              </motion.div>
             </div>
           </main>
         </header>
