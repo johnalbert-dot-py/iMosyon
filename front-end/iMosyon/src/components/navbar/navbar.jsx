@@ -51,7 +51,7 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-action">
-          <a href="#">
+          <a href="/sign-up/">
             Sign Up
           </a>
           <motion.span onHoverStart={rotateArrowStraight} onHoverEnd={rotateArrowUp} animate={{

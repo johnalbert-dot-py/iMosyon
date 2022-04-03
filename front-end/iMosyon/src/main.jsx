@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import App from './App'
 
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import './root.css'
 
@@ -29,7 +29,7 @@ ReactDOM.render(
     <BrowserRouter>
       <ChakraProvider theme={theme}>
         <App />
-        </ChakraProvider>
+      </ChakraProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
