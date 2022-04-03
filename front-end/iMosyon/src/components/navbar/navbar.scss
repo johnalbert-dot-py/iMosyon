@@ -1,12 +1,21 @@
 @import "@fontsource/poppins/700.css";
 
-div {
+.navbar-wrapper {
+  background-color: rgba(0, 0, 0, 0.0);
+  position: fixed;
+  top: 0;
+  width: 100%;
+
   padding: {
-    top: 5px;
-    bottom: 5px;
+    top: 20px;
+    bottom: 20px;
   }
 
+  .navbar-blur {}
+
   .navbar {
+    width: 100%;
+    opacity: 1;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -41,5 +50,4 @@ div {
       }
     }
   }
-
 }
