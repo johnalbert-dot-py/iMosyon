@@ -11,3 +11,11 @@
   -ms-text-size-adjust: 100%;
   text-size-adjust: 100%
 }
+
+:root {
+  --primary-white: #fdfdfd;
+  --primary-dark: #2F3134;
+  --secondary-dark: #191A1B;
+  --blue: #004FE9;
+  --red: #ED6161
+}

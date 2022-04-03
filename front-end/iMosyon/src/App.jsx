@@ -1,7 +1,6 @@
-import { useState } from 'react'
-import Home from '@/pages/Home/home.jsx';
+import Home from '@/pages/Home/home';
 
-function App() {
+const App = () => {
   return (
     <div>
       <Home />
@@ -9,4 +8,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

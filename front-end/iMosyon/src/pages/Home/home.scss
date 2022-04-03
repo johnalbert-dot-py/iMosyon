@@ -1,0 +1,74 @@
+@import "@fontsource/poppins/600.css";
+
+.home {
+  background: radial-gradient(78.01% 78.01% at 50% 21.99%, #2F3134 0%, #171818 81.65%);
+  background-repeat: no-repeat;
+  background-size: cover 100%;
+  background-position: center;
+  color: var(--primary-white);
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  width: 100%;
+  padding-top: 10%;
+  padding-bottom: 8%;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  .header-content {
+    .contents {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      span {
+        font-weight: bold;
+        text-align: center;
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+
+      h1 {
+        width: 920px;
+        font-size: 4.9rem;
+        font-weight: bold;
+        color: var(--primary-white);
+        text-align: center;
+        line-height: 100%;
+      }
+    }
+
+    .action {
+      margin-top: 150px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+
+      p {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+      }
+    }
+  }
+
+}
+
+section#system-description {
+  width: 100%;
+
+  h1 {
+    font-size: 37px;
+    font-family: 'Poppins';
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+}

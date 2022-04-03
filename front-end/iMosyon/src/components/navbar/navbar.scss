@@ -1,0 +1,45 @@
+@import "@fontsource/poppins/700.css";
+
+div {
+  padding: {
+    top: 5px;
+    bottom: 5px;
+  }
+
+  .navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    .navbar-brand {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      display: flex;
+      gap: 20px;
+
+      align-items: baseline;
+
+      .brand {
+        font-family: 'Poppins', sans-serif;
+        font-weight: bolder;
+        font-size: 22px;
+      }
+    }
+
+    .navbar-action {
+      font-family: 'Poppins', sans-serif;
+      font-weight: bold;
+      display: flex;
+      gap: 30px;
+      align-items: center;
+
+      a {
+        &:hover {
+          color: #97bcf7
+        }
+      }
+    }
+  }
+
+}
