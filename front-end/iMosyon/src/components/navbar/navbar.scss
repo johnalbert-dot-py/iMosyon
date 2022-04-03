@@ -16,6 +16,7 @@
   position: fixed;
   top: 0;
   width: 100%;
+  margin: auto;
 
   padding: {
     top: 20px;
@@ -23,6 +24,11 @@
   }
 
   .navbar {
+    margin-right: auto;
+    margin-left: auto;
+  max-width: 1920px;
+
+
     width: 100%;
     opacity: 1;
     display: flex;
