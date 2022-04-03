@@ -5,13 +5,13 @@
   position: fixed;
   top: 0;
   width: 100%;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
 
   padding: {
     top: 20px;
     bottom: 20px;
   }
-
-  .navbar-blur {}
 
   .navbar {
     width: 100%;
