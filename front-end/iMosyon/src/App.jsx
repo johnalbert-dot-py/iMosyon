@@ -1,11 +1,12 @@
-import Index from './pages/index';
+import { useState } from 'react'
 
-const App = () => {
+function App() {
+  const [count, setCount] = useState(0)
+
   return (
-    <div>
-      <Index />
+    <div className="App">
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
