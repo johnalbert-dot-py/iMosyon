@@ -1,13 +1,13 @@
-import '@fontsource/poppins';
-import '@fontsource/noto-sans';
-import { BtnLightCircle, BtnLightCircleOutline, BtnBurger } from '@/components/buttons/button.jsx'
+import '@fontsource/poppins'
+import '@fontsource/noto-sans'
 import './navbar.scss'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowUpRight, faArrowRight, faArrowUp } from '@fortawesome/pro-solid-svg-icons';
-import { useState, useEffect } from 'react';
+import { faArrowUpRight } from '@fortawesome/pro-solid-svg-icons'
+import { useState } from 'react'
 
-import {motion} from 'framer-motion';
+import { motion } from 'framer-motion'
+import { BtnLightCircle, BtnBurger } from '@/components/buttons/button.jsx'
 
 
 const Navbar = () => {
