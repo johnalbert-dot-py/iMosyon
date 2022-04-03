@@ -22,12 +22,13 @@
 
 
 .btn {
-  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+
+// sizes
 .btn-lg {
   @include btn-lg-width;
 
@@ -37,7 +38,6 @@
   }
   font-size: 1.563rem !important;
   font-weight: 600;
-  line-height: 1.5;
   border-radius: 9px;
   font-family: 'Poppins';
 }
@@ -52,7 +52,6 @@
 
   font-size: 1.063rem !important;
   font-weight: 600;
-  line-height: 1.5;
   border-radius: 6px;
   font-family: 'Poppins';
 
@@ -66,18 +65,12 @@
   }
   font-size: 0.813rem !important;
   font-weight: 600;
-  line-height: 1.5;
   border-radius: 6px;
   font-family: 'Poppins';
+
 }
 
-.btn-burger {
-  color: #fff;
-  padding: {
-    left: 0px !important;
-    right: 0px !important;
-  }
-}
+// width sie
 
 .btn-lg-w {
   @include btn-lg-width;
@@ -91,9 +84,13 @@
   @include btn-sm-width;
 }
 
+// radius
+
 .btn-circle {
-  border-radius: 25px
+  border-radius: 25px;
 }
+
+// colors
 
 .btn-light {
   @include defaultTransition;
@@ -105,30 +102,47 @@
     color: var(--primary-white);
   }
 
-  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.25);
+  &:active {
+    background-color: #494A4D;
+    color: var(--primary-white);
+  }
+
 }
 
 .btn-light-outline {
   @include defaultTransition;
   background-color: rgba(0, 0, 0, 0);
-  border: 1px solid var(--primary-white);
   color: var(--primary-white);
 
   &:hover {
     background-color: var(--primary-dark);
     color: var(--primary-white);
+    margin: -2px;
+
   }
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.25);
 }
 
 .btn-dark-outline {
   @include defaultTransition;
   background-color: transparent;
-  border: 1px solid var(--primary-dark);
   color: var(--primary-white);
 
   &:hover {
     background-color: var(--primary-dark);
     color: var(--primary-white);
   }
-
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.25);
 }
+
+// custom
+
+
+.btn-burger {
+  color: #fff;
+  padding: {
+    left: 0px !important;
+    right: 0px !important;
+  }
+}
+
