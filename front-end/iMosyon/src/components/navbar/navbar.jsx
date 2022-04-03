@@ -10,8 +10,6 @@ import { useState, useEffect } from 'react';
 
 const Navbar = () => {
 
-  const [isScrolled, setIsScrolled] = useState(false);
-
   return (
     <div className={"navbar-wrapper " + (isScrolled ? ' bg-dark' : '') + ""}>
       <nav className='navbar'>
