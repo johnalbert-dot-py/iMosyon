@@ -5,6 +5,22 @@
   transition: all 0.4s ease;
 }
 
+@mixin btn-lg-width {
+  padding-left: 51px !important;
+  padding-right: 51px !important;
+}
+
+@mixin btn-md-width {
+  padding-left: 50px !important;
+  padding-right: 50px !important;
+}
+
+@mixin btn-sm-width {
+  padding-left: 34px !important;
+  padding-right: 34px !important;
+}
+
+
 .btn {
   border: none;
   display: flex;
@@ -13,8 +29,13 @@
 }
 
 .btn-lg {
-  padding: 10px 20px;
-  font-size: 1.2rem;
+  @include btn-lg-width;
+
+  padding: {
+    top: 20px !important;
+    bottom: 20px !important;
+  }
+  font-size: 1.563rem !important;
   font-weight: 600;
   line-height: 1.5;
   border-radius: 9px;
@@ -22,14 +43,14 @@
 }
 
 .btn-md {
+
+  @include btn-md-width;
   padding: {
-    top: 10px;
-    left: 27px;
-    right: 27px;
-    bottom: 10px;
+    top: 10px !important;
+    bottom: 10px !important;
   }
 
-  font-size: 0.9rem;
+  font-size: 1.063rem !important;
   font-weight: 600;
   line-height: 1.5;
   border-radius: 6px;
@@ -38,42 +59,40 @@
 }
 
 .btn-sm {
+  @include btn-sm-width;
   padding: {
-    top: 7px;
-    left: 18px;
-    right: 18px;
-    bottom: 7px;
+    top: 7px !important;
+    bottom: 7px !important;
   }
-
-  font-size: 0.9rem;
+  font-size: 0.813rem !important;
   font-weight: 600;
   line-height: 1.5;
   border-radius: 6px;
   font-family: 'Poppins';
-
 }
 
 .btn-burger {
   color: #fff;
+  padding: {
+    left: 0px !important;
+    right: 0px !important;
+  }
 }
 
 .btn-lg-w {
-  padding-left: 50px !important;
-  padding-right: 50px !important;
+  @include btn-lg-width;
 }
 
 .btn-md-w {
-  padding-left: 35px !important;
-  padding-right: 35px !important;
+  @include btn-md-width;
 }
 
 .btn-sm-w {
-  padding-left: 27px !important;
-  padding-right: 27px !important;
+  @include btn-sm-width;
 }
 
 .btn-circle {
-  border-radius: 18px
+  border-radius: 25px
 }
 
 .btn-light {

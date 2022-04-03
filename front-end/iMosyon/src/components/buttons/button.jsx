@@ -1,33 +1,33 @@
 import './buttons.scss';
 import burger from '@/assets/burger.svg';
 
-export const BtnLight = ({ children, ...props }) => {
+export const BtnLight = ({ ...props }) => {
   return (
-    <button className={`btn btn-light ${props.btnSize} ${props.btnWidth} show-${props.showOnSmall ? 'true' : 'false'}`} {...props}>
-      {children}
+    <button className={`btn btn-light ${props.size} ${props.width ? props.width : ''} show-${props.show_on_small ? 'true' : 'false'}`} {...props}>
+      {props.children}
     </button >
   );
 }
 
-export const BtnLightCircle = ({ children, ...props }) => {
+export const BtnLightCircle = ({ ...props }) => {
   return (
-    <button className={`btn btn-light btn-circle ${props.btnSize} show-${props.showOnSmall ? 'true' : 'false'}`} {...props}>
-      {children}
+    <button className={`btn btn-light btn-circle ${props.size} ${props.width ? props.width : ''} show-${props.show_on_small ? 'true' : 'false'}`} {...props}>
+      {props.children}
     </button >
   );
 }
 
-export const BtnLightCircleOutline = ({ children, ...props }) => {
+export const BtnLightCircleOutline = ({ ...props }) => {
   return (
-    <button className={`btn btn-light-outline btn-circle ${props.btnSize} show-${props.showOnSmall ? 'true' : 'false'}`} {...props}>
-      {children}
+    <button className={`btn btn-light-outline btn-circle ${props.size} ${props.width ? props.width : ''} show-${props.show_on_small ? 'true' : 'false'}`} {...props}>
+      {props.children}
     </button >
   );
 }
 
-export const BtnBurger = ({ children, ...props }) => {
+export const BtnBurger = ({ ...props }) => {
   return (
-    <a href="#" className={`btn btn-burger ${props.btnSize} show-${props.showOnSmall ? 'true' : 'false'}`} {...props}>
+    <a href="#" className={`btn btn-burger ${props.size} ${props.width ? props.width : ''} show-${props.show_on_small ? 'true' : 'false'}`} {...props}>
       <img src={burger} />
     </a>
   )

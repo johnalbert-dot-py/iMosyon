@@ -16,7 +16,7 @@ const Navbar = () => {
     <div className={"navbar-wrapper " + (isScrolled ? ' bg-dark' : '') + ""}>
       <nav className='navbar'>
         <div className="navbar-brand">
-          <a href="#" class="brand">
+          <a href="#" className="brand">
             iMosyon
           </a>
           <a href="#">
@@ -34,10 +34,12 @@ const Navbar = () => {
           <a href="#">
             Sign Up
           </a>
-          <BtnLightCircle btnSize="btn-md" showOnSmall={true}>
+
+          <BtnLightCircle size="btn-md" width="btn-sm-w" show_on_small="true">
             Login &nbsp;<FontAwesomeIcon icon={faArrowUpRight} />
           </BtnLightCircle>
-          <BtnBurger btnSize="btn-md" showOnSmall={true}/>
+
+          <BtnBurger size="btn-md" show_on_small="true" />
         </div>
       </nav>
     </div>

@@ -36,7 +36,7 @@ export default function Home() {
                 <p>
                   Start sign-up to fully experience our Emotion Prediction system.
                 </p>
-                <BtnLight btnSize="btn-lg" btnWidth="btn-lg-w">
+                <BtnLight size="btn-md" width="btn-lg-w" show_on_small="true">
                   Get Started
                 </BtnLight>
               </div>
