@@ -46,7 +46,7 @@ export default function Home() {
                 y: 0,
                 opacity: 1,
                 transition: {
-                  duration: .5,
+                  duration: .8,
                 }
               }} initial={{
                 y: 50,
