@@ -19,3 +19,9 @@
   --blue: #004FE9;
   --red: #ED6161
 }
+
+html {
+  scroll-behavior: smooth;
+  width: 100%;
+  outline-color: transparent;
+}

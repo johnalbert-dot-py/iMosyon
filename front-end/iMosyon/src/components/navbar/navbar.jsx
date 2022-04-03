@@ -22,7 +22,7 @@ const Navbar = () => {
           <a href="#">
             Home
           </a>
-          <a href="#">
+          <a href="#system-description">
             How it works?
           </a>
           <a href="#">
