@@ -22,3 +22,16 @@
   align-items: center;
   filter: blur(5px)
 }
+
+.wavy-left-and-right {
+  position: absolute;
+  height: 700px;
+  margin-top: -270px;
+  width: 100%;
+  z-index: -1;
+  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

@@ -4,7 +4,7 @@ import { BtnLight, BtnLightCircleOutline } from '@/components/buttons/button.jsx
 import SystemStep from '@/components/home/system-step.jsx';
 import Navbar from "@/components/navbar/navbar";
 import Footer from '@/components/home/footer.jsx';
-import {WavyLines, WavyLinesLarge} from '@/components/home/wavy-lines/WavyLines.jsx';
+import {WavyLines, WavyLinesLarge, WavyLinesLeftAndRight} from '@/components/home/wavy-lines/WavyLines.jsx';
 
 import { useState, useEffect } from "react";
 
@@ -21,7 +21,8 @@ export default function Home() {
           <main>
             <div className="header-content">
               <WavyLines />
-              <WavyLinesLarge/>
+              <WavyLinesLarge />
+              <WavyLinesLeftAndRight/>
               <div className="contents">
                 <span>
                   iMosyon
