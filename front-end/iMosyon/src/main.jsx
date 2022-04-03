@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 import App from './App'
 
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
+import { BrowserRouter } from "react-router-dom";
+
 import './root.css'
 
 const imosyon_theme = {
@@ -24,9 +26,11 @@ const theme = extendTheme({ imosyon_theme })
 
 ReactDOM.render(
   <React.StrictMode>
-    <ChakraProvider theme={theme}>
-      <App />
-    </ChakraProvider>
+    <BrowserRouter>
+      <ChakraProvider theme={theme}>
+        <App />
+        </ChakraProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 )
