@@ -1,10 +1,12 @@
 import './home.scss';
 
-import { BtnLight, BtnLightCircleOutline } from '@/components/buttons/button.jsx'
-import SystemStep from '@/components/home/system-step.jsx'
-import Navbar from "@/components/navbar/navbar"
-import Footer from '@/components/home/footer.jsx'
-import { useState, useEffect } from "react"
+import { BtnLight, BtnLightCircleOutline } from '@/components/buttons/button.jsx';
+import SystemStep from '@/components/home/system-step.jsx';
+import Navbar from "@/components/navbar/navbar";
+import Footer from '@/components/home/footer.jsx';
+import WavyLines from '@/components/wavy-lines/WavyLines.jsx';
+
+import { useState, useEffect } from "react";
 
 export default function Home() {
   useEffect(() => {
@@ -18,12 +20,13 @@ export default function Home() {
         <header>
           <main>
             <div className="header-content">
+              <WavyLines />
               <div className="contents">
                 <span>
                   iMosyon
                 </span>
                 <h1>
-                  Let's predict emotion
+                  Let’s predict emotion
                   through sentences.
                 </h1>
               </div>

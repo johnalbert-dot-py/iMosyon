@@ -3,9 +3,13 @@ import './footer.scss';
 export const Footer = () => {
   return (
     <div className='footer'>
-      <h3>
+      <h2>
         iMosyon
-      </h3>
+      </h2>
+      <p>
+        iMosyon is a emotion recognition system
+        built with python.
+      </p>
     </div>
   )
 }

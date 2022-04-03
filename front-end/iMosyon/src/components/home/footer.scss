@@ -1,12 +1,39 @@
+@import "@fontsource/poppins/700.css";
+@import "@fontsource/poppins/500.css";
+
 div.footer {
   background: linear-gradient(91.62deg, #2F3134 40.75%, #3A4D69 150.86%);
   background-repeat: no-repeat;
   background-size: cover;
 
   padding: {
-    top: 20px;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
+    top: 58px;
+    bottom: 58px;
+    left: 10%;
+    right: 10%;
+  }
+
+  h2 {
+    font-size: 20px;
+    font-family: 'Poppins';
+    font-weight: 700;
+  }
+
+  p {
+    width: calc(454px / 1.4);
+    font-size: 16px;
+    font-family: 'Poppins';
+    font-weight: 500;
+  }
+
+  @media screen and (min-width: 533px) {
+    h2 {
+      font-size: 36px;
+    }
+
+    p {
+      width: 454px;
+      font-size: 22px;
+    }
   }
 }
