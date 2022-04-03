@@ -10,7 +10,6 @@ import { faArrowUpRight } from '@fortawesome/pro-solid-svg-icons';
 const Navbar = () => {
   return (
     <div className="navbar-wrapper">
-      <div className="navbar-blur"></div>
       <nav className="navbar">
         <div className="navbar-brand">
           <a href="#" class="brand">
