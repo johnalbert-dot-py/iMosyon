@@ -5,12 +5,16 @@ import './navbar.scss'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUpRight } from '@fortawesome/pro-solid-svg-icons';
+import { useState, useEffect } from 'react';
 
 
 const Navbar = () => {
+
+  const [isScrolled, setIsScrolled] = useState(false);
+
   return (
-    <div className="navbar-wrapper">
-      <nav className="navbar">
+    <div className={"navbar-wrapper " + (isScrolled ? ' bg-dark' : '') + ""}>
+      <nav className='navbar'>
         <div className="navbar-brand">
           <a href="#" class="brand">
             iMosyon

@@ -1,11 +1,20 @@
-import wavyImg from '@/assets/wavy-lines.svg'
+import wavyImg from '@/assets/wavy-lines.svg';
+import wavyImgLarge from '@/assets/large-wavy-lines.svg';
 import './wavyline.scss'
 
 
-const WavyLines = ({ children, ...props }) => {
+export const WavyLines = ({ children, ...props }) => {
   return (
     <div className="wavy">
       <img src={wavyImg} />
+    </div>
+  )
+}
+
+export const WavyLinesLarge = ({ children, ...props }) => {
+  return (
+    <div className="wavy-large">
+      <img src={wavyImgLarge} />
     </div>
   )
 }
