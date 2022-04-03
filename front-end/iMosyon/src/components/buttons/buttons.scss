@@ -1,4 +1,9 @@
+@use 'sass:color';
 @import "@fontsource/poppins/700.css";
+
+@mixin defaultTransition {
+  transition: all 0.4s ease;
+}
 
 .btn {
   border: none;
@@ -72,6 +77,7 @@
 }
 
 .btn-light {
+  @include defaultTransition;
   background-color: var(--primary-white);
   color: var(--primary-dark);
 
@@ -84,6 +90,7 @@
 }
 
 .btn-light-outline {
+  @include defaultTransition;
   background-color: rgba(0, 0, 0, 0);
   border: 1px solid var(--primary-white);
   color: var(--primary-white);
@@ -95,7 +102,14 @@
 }
 
 .btn-dark-outline {
+  @include defaultTransition;
   background-color: transparent;
   border: 1px solid var(--primary-dark);
-  color: var(--primary-dark);
+  color: var(--primary-white);
+
+  &:hover {
+    background-color: var(--primary-dark);
+    color: var(--primary-white);
+  }
+
 }
