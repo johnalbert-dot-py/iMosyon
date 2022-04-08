@@ -2,6 +2,7 @@ import './system-step.scss';
 import step1 from "@/assets/undraw-step-1.svg"
 import step2 from "@/assets/undraw-step-2.svg"
 import step3 from "@/assets/undraw-step-3.svg"
+import { motion } from 'framer-motion';
 
 export const SystemStep = () => {
   return (

@@ -6,7 +6,7 @@ import Navbar from "@/components/navbar/navbar";
 import Footer from '@/components/home/footer.jsx';
 
 import { useEffect } from "react";
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion';
 import {WavyLines, WavyLinesLarge, WavyLinesLeftAndRight} from '@/components/home/wavy-lines/WavyLines.jsx';
 
 export default function Home() {
