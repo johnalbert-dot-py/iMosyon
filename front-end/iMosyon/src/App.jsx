@@ -1,7 +1,9 @@
-import Home from '@/pages/Home/home';
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
+
+import Home from '@/pages/Home/home'
 import SignUp from '@/pages/SignUp/sign-up'
 import Login from '@/pages/Login/login'
-import { Routes, Route } from "react-router-dom";
 
 const App = () => {
   return (
@@ -13,4 +15,4 @@ const App = () => {
   )
 }
 
-export default App;
+export default App

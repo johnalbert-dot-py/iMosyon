@@ -1,12 +1,12 @@
-export const Input = ({...props}) => {
+import React from 'react'
 
+export const Input = ({ ...props }) => {
   return (
     <div className="input-text">
-      <label htmlFor={props.id}>{ props.label }</label>
+      <label htmlFor={props.id}>{props.label}</label>
       <input {...props} />
     </div>
   )
-
 }
 
-export default Input;
+export default Input
