@@ -21,11 +21,29 @@
   --primary-dark: #2F3134;
   --secondary-dark: #191A1B;
   --blue: #004FE9;
-  --red: #ED6161
+  --red: #ED6161;
+  --font-family: 'Poppins', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-white);
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 
 html {
   scroll-behavior: smooth;
+  width: 100%;
+  outline-color: transparent;
+  font-family: var(--font-family);
+}
+
+html,body {
   width: 100%;
   outline-color: transparent;
 }

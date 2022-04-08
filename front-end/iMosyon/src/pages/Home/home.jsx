@@ -11,11 +11,11 @@ import {WavyLines, WavyLinesLarge, WavyLinesLeftAndRight} from '@/components/hom
 
 export default function Home() {
   useEffect(() => {
+    document.title = "iMosyon | Home";
     document.getElementsByTagName("body")[0].classList.add("home")
   })
   return (
-    <div>
-      <div>
+    <>
         <Navbar>
         </Navbar>
         <header>
@@ -68,8 +68,7 @@ export default function Home() {
           </h1>
           <SystemStep />
         </section>
-      </div>
       <Footer />
-    </div >
+    </ >
   )
 }

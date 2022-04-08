@@ -19,7 +19,7 @@ const imosyon_theme = {
   fonts: {
     heading: "Poppins, sans-serif",
     main: "Noto Sans, sans-serif"
-  }
+  },
 }
 
 const theme = extendTheme({ imosyon_theme })
@@ -27,9 +27,7 @@ const theme = extendTheme({ imosyon_theme })
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <ChakraProvider theme={theme}>
         <App />
-      </ChakraProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

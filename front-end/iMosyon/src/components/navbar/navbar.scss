@@ -26,7 +26,7 @@
   .navbar {
     margin-right: auto;
     margin-left: auto;
-  max-width: 1920px;
+    max-width: 1920px;
 
 
     width: 100%;
@@ -45,6 +45,7 @@
         font-weight: bolder;
         font-size: 22px;
         display: block;
+        letter-spacing: 1.2px;
       }
 
       :not(.brand) {
@@ -56,6 +57,7 @@
         align-items: baseline;
         justify-content: center;
         gap: 20px;
+        letter-spacing: 0.5px;
 
         :not(.brand) {
           display: block;
@@ -85,6 +87,7 @@
       align-items: center;
       justify-content: space-around;
       gap: 20px;
+      letter-spacing: 1.2px;
 
       a:not(.show-true) {
         display: none;
