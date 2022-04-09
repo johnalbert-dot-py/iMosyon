@@ -6,22 +6,23 @@
   font-size: 100%;
 
   -webkit-box-sizing: border-box;
-  -moz-box-sizing:border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
 
   -webkit-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
 
-  text-size-adjust: 100%
+  text-size-adjust: 100%;
 }
 
 :root {
   --primary-white: #fdfdfd;
-  --primary-dark: #2F3134;
-  --secondary-dark: #191A1B;
-  --blue: #004FE9;
-  --red: #ED6161;
+  --primary-dark: #2f3134;
+  --secondary-dark: #191a1b;
+  --placeholder-color: #838384;
+  --blue: #004fe9;
+  --red: #ed6161;
   --font-family: 'Poppins', sans-serif;
 }
 
@@ -43,7 +44,8 @@ html {
   font-family: var(--font-family);
 }
 
-html,body {
+html,
+body {
   width: 100%;
   outline-color: transparent;
 }

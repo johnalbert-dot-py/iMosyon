@@ -4,7 +4,7 @@ import App from './App'
 
 import { BrowserRouter } from 'react-router-dom'
 
-import './root.css'
+import './root.scss'
 
 // const imosyon_theme = {
 //   dark: {

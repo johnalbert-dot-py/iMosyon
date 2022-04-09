@@ -22,8 +22,10 @@ export const LeftContent = ({ emoji, heading, message }) => {
       </div>
       <div className="content">
         <h1>{heading}</h1>
-        <p>"{message}"</p>
-        <span>-iMosyon Team</span>
+        <div className="left-description">
+          <span className="message">“{message}”</span>
+          <span className="team">-iMosyon Team</span>
+        </div>
       </div>
     </div>
   )

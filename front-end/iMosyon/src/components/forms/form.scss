@@ -1,0 +1,131 @@
+@import '@fontsource/noto-sans/500.css';
+$placeholder: rgba(120, 124, 126, 0.68);
+
+.input-form {
+  width: 100%;
+  margin-top: 41px;
+
+  div.input {
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+
+    label {
+      position: absolute;
+      margin-left: 31px;
+      color: $placeholder;
+      font-size: 14px !important;
+      pointer-events: none;
+      margin-bottom: 65px;
+      color: var(--blue);
+      background: linear-gradient(180deg, #fdfdfd 31.77%, #f0f3f7 50%);
+      padding-left: 5px;
+      padding-right: 5px;
+      transition: 0.1s ease-in-out all;
+      margin-left: 22px;
+
+      // display: none;
+    }
+
+    input {
+      border: 2px solid var(--blue);
+      background: rgba(0, 57, 143, 0.05);
+      color: var(--secondary-dark);
+      border-radius: 14px;
+      border-right: none;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+      width: 95%;
+      position: relative;
+      outline: none;
+
+      font-family: 'Noto Sans', sans-serif;
+      font-weight: 500;
+      font-style: normal;
+      letter-spacing: 0.005em;
+      font-size: 14px !important;
+
+      padding: {
+        top: 22px;
+        bottom: 22px;
+        left: 30px;
+      }
+
+      &::placeholder {
+        opacity: 0;
+      }
+    }
+
+    .input-icon {
+      color: $placeholder;
+      background: rgba(0, 57, 143, 0.05);
+      border-top-right-radius: 14px;
+      border-bottom-right-radius: 14px;
+      color: var(--blue);
+      border: 2px solid var(--blue);
+      border-left: none;
+      padding: {
+        left: 30px;
+        right: 30px;
+        top: 21px;
+        bottom: 20px;
+      }
+    }
+
+    input:placeholder-shown {
+      & ~ label {
+        display: block;
+        margin-bottom: 0px;
+        color: $placeholder;
+        background: none;
+        padding-left: 0px;
+        padding-right: 0px;
+      }
+      & ~ .input-icon {
+        color: $placeholder;
+        border: 2px solid transparent;
+      }
+
+      border: 2px solid transparent;
+    }
+
+    input:focus {
+      & ~ .input-icon {
+        color: var(--blue);
+        border: 2px solid var(--blue);
+        border-left: none;
+      }
+
+      & ~ label {
+        // display: none;
+        margin-bottom: 65px;
+        margin-left: 22px;
+        color: var(--blue);
+        background: linear-gradient(180deg, #fdfdfd 31.77%, #f0f3f7 50%);
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+
+      border: 2px solid var(--blue);
+      border-right: none;
+    }
+
+    &:hover {
+      input {
+        border: 2px solid var(--blue);
+        border-right: none;
+      }
+      .input-icon {
+        color: var(--blue) !important;
+        border: 2px solid var(--blue) !important;
+        border-left: none !important;
+      }
+
+      label {
+        color: var(--blue);
+      }
+    }
+  }
+}
