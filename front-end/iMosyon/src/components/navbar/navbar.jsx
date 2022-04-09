@@ -8,12 +8,17 @@ import '@fontsource/noto-sans'
 import './navbar.scss'
 
 import { BtnLightCircle, BtnBurger } from '@/components/buttons/button.jsx'
+import { Route, useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
-  const arrowStyleDefault = {
-    fontSize: '1.0rem',
+  function redirectTo(path = '/') {
+    window.location.href = path
   }
-  const [arrowStyle, setArrowStyle] = useState(arrowStyleDefault)
+
+  const [arrowStyle, setArrowStyle] = useState({
+    fontSize: '1.0rem',
+  })
+
   const rotateArrowStraight = () => {
     setArrowStyle((arrowStyle) => {
       return {
@@ -56,7 +61,12 @@ const Navbar = () => {
             }}
             initial={{ opacity: 0 }}
           >
-            <BtnLightCircle size="btn-md" width="btn-sm-w" show_on_small="true">
+            <BtnLightCircle
+              size="btn-md"
+              width="btn-sm-w"
+              show_on_small="true"
+              onClick={() => redirectTo('/login/')}
+            >
               Login &nbsp;
               <FontAwesomeIcon icon={faArrowUpRight} style={arrowStyle} />{' '}
               &nbsp;

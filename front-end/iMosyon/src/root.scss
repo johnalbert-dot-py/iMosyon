@@ -1,3 +1,5 @@
+@import '../node_modules/@fortawesome/fontawesome-pro/scss/light.scss';
+
 *,
 *::before,
 *::after {
@@ -29,6 +31,16 @@
 a {
   text-decoration: none;
   color: var(--primary-white);
+
+  background-image: linear-gradient(var(--blue), var(--blue));
+  background-position: 0 100%; /*OR bottom left*/
+  background-size: 0% 2px;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s, background-position 0s 0.3s;
+  &:hover {
+    background-position: 100% 100%; /*OR bottom right*/
+    background-size: 100% 2px;
+  }
 }
 
 button {

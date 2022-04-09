@@ -2,11 +2,11 @@ import { React, useEffect, useState } from 'react'
 import AuthPage from '@/components/auth-user/AuthPage'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faLockKeyhole } from '@fortawesome/pro-regular-svg-icons'
-// import { faEnvelope } from '@fortawesome/pro-light-svg-icons'
 
 export const Login = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [remember, setRemember] = useState(false)
 
   useEffect(() => {
     document.title = 'Login | iMosyon'
@@ -37,6 +37,12 @@ export const Login = () => {
         icon: <FontAwesomeIcon icon={faLockKeyhole}></FontAwesomeIcon>,
         value: password,
         onchange: (e) => setPassword(e.target.value),
+        remember: {
+          label: 'Remember me',
+          onChange: () => setRemember(!remember),
+          checked: remember,
+          name: 'remember',
+        },
       },
     ],
   }

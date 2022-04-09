@@ -1,4 +1,12 @@
+$fa-font-path: '../node_modules/@fortawesome/fontawesome-pro/webfonts';
+
+@import '../../../node_modules/@fortawesome/fontawesome-pro/scss/fontawesome.scss';
+@import '../../../node_modules/@fortawesome/fontawesome-pro/scss/solid.scss';
+@import '../../../node_modules/@fortawesome/fontawesome-pro/scss/regular.scss';
+@import '../../../node_modules/@fortawesome/fontawesome-pro/scss/light.scss';
+
 @import '@fontsource/noto-sans/500.css';
+
 $placeholder: rgba(120, 124, 126, 0.68);
 
 .input-form {
@@ -6,7 +14,7 @@ $placeholder: rgba(120, 124, 126, 0.68);
   margin-top: 41px;
 
   div.input {
-    margin-bottom: 24px;
+    margin-bottom: 14px;
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -126,6 +134,97 @@ $placeholder: rgba(120, 124, 126, 0.68);
       label {
         color: var(--blue);
       }
+    }
+  }
+
+  div.small {
+    margin-top: -5px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 0.8rem;
+
+    .checkfield {
+      color: $placeholder;
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      justify-content: space-between;
+
+      input {
+        cursor: pointer;
+        position: absolute;
+        opacity: 0;
+        width: 23px;
+        height: 23px;
+      }
+
+      .custom-checkbox {
+        width: 23px;
+        height: 23px;
+        border-radius: 2px;
+        background-color: #e1e8f1;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-right: 5px;
+      }
+
+      input:checked {
+        & ~ .custom-checkbox {
+          &::after {
+            @extend %fa-icon;
+            @extend .fa-solid;
+            content: fa-content($fa-var-check);
+            width: 100%;
+            display: flex;
+            align-items: center;
+            font-weight: 900;
+            flex-direction: row;
+            justify-content: center;
+            font-size: 14px;
+          }
+          color: var(--blue) !important;
+        }
+
+        & ~ label {
+          color: var(--blue) !important;
+        }
+      }
+
+      label {
+        cursor: pointer;
+        user-select: none;
+        &:hover {
+          color: #a1acd0;
+        }
+      }
+
+      label:hover,
+      input:hover {
+        & ~ .custom-checkbox {
+          &::after {
+            @extend %fa-icon;
+            @extend .fa-regular;
+            content: '\f00c';
+            width: 100%;
+            display: flex;
+            align-items: center;
+            font-weight: 900;
+            flex-direction: row;
+            justify-content: center;
+            font-size: 14px;
+          }
+          color: #a1acd0;
+        }
+      }
+    }
+
+    .forgot {
+      color: var(--blue);
     }
   }
 }
