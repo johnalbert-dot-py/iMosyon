@@ -8,6 +8,9 @@ export const Login = () => {
   const [password, setPassword] = useState('')
   const [remember, setRemember] = useState(false)
 
+  // const [usernameError, setUsernameError] = useState('')
+  // const [passwordError, setPasswordError] = useState('')
+
   useEffect(() => {
     document.title = 'Login | iMosyon'
     document.getElementsByTagName('body')[0].classList.add('main')
@@ -16,7 +19,7 @@ export const Login = () => {
   const left = {
     emoji: ['😎', '🔥', '😆'],
     heading: 'iMosyon',
-    message: 'Welcome to our system!',
+    message: "We're glad that you're back!",
   }
 
   const right = {
@@ -26,10 +29,12 @@ export const Login = () => {
     inputFields: [
       {
         label: 'Username or Email',
-        type: 'email',
+        type: 'text',
         icon: <FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon>,
         value: username,
         onchange: (e) => setUsername(e.target.value),
+        error: '',
+        required: true,
       },
       {
         label: 'Password',
@@ -37,6 +42,8 @@ export const Login = () => {
         icon: <FontAwesomeIcon icon={faLockKeyhole}></FontAwesomeIcon>,
         value: password,
         onchange: (e) => setPassword(e.target.value),
+        required: true,
+        error: '',
         remember: {
           label: 'Remember me',
           onChange: () => setRemember(!remember),
@@ -45,6 +52,11 @@ export const Login = () => {
         },
       },
     ],
+    errors: false,
+    submitHandler: (event) => {
+      event.preventDefault()
+      console.log(username, password)
+    },
   }
 
   return (

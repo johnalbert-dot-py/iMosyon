@@ -19,27 +19,59 @@ const GoHome = styled.a`
   float: right;
 `
 
-export const RightContent = ({ title, message, inputFields }) => {
+const GoToSignup = styled.a`
+  font-family: 'Noto Sans', sans-serif;
+  color: #004fe9 !important;
+  width: auto;
+  margin-left: 5px;
+`
+
+export const RightContent = ({
+  title,
+  message,
+  inputFields,
+  submitHandler,
+  errors,
+}) => {
   return (
     <>
       <div className="right-content">
         <div className="content">
           <h1>{title}</h1>
           <p className="message">{message}</p>
-          <DefaultForm>
+          <DefaultForm submit={submitHandler}>
             {inputFields.map((field, index) => {
               return (
                 <>
-                  <div key={index} className="input">
+                  <div key={index} className={'input'}>
                     <input
                       type={field.type}
                       onChange={field.onchange}
                       value={field.value}
+                      required={field.required}
                       placeholder=" "
+                      className={field.error != '' ? 'input-error' : ''}
                     />
-                    <label>{field.label}</label>
-                    <span className="input-icon">{field.icon}</span>
+                    <label className={field.error != '' ? ' input-error' : ''}>
+                      {field.label}
+                    </label>
+                    <span
+                      className={
+                        'input-icon' + (field.error != '' ? ' icon-error' : '')
+                      }
+                    >
+                      {field.icon}
+                    </span>
                   </div>
+                  {field.error != '' ? (
+                    <>
+                      <div className="small">
+                        <span className="error">{field.error}</span>
+                      </div>
+                    </>
+                  ) : (
+                    <></>
+                  )}
                   {field.remember ? (
                     <div className="small">
                       <CheckBox {...field.remember} />
@@ -51,15 +83,23 @@ export const RightContent = ({ title, message, inputFields }) => {
                 </>
               )
             })}
-            <BtnDark size="btn-md" width="btn-lg-100" show_on_small="true">
-              Login
+            <BtnDark
+              size="btn-md"
+              width="btn-lg-100"
+              type="submit"
+              show_on_small="true"
+              disabled={errors}
+            >
+              {window.location.pathname == '/login/' ? (
+                <>Login</>
+              ) : (
+                <>Sign Up</>
+              )}
             </BtnDark>
-            <a href="#">
-              <GoHome>
-                <FontAwesomeIcon icon={faArrowLeft} />
-                Go back to Home
-              </GoHome>
-            </a>
+            <GoHome href="#">
+              <FontAwesomeIcon icon={faArrowLeft} />
+              Go back to Home
+            </GoHome>
           </DefaultForm>
         </div>
       </div>
@@ -67,11 +107,18 @@ export const RightContent = ({ title, message, inputFields }) => {
       <div className="content-footer">
         {window.location.pathname == '/login/' ? (
           <>
-            {/* eslint-disable-next-line react/no-unescaped-entities */}
-            <span>Don't have an account yet? Sign Up</span>
+            <span>
+              {/* eslint-disable-next-line react/no-unescaped-entities */}
+              Don't have an account yet?
+              <GoToSignup href="/register/">Sign Up</GoToSignup>
+            </span>
           </>
         ) : (
-          <>Sign Up</>
+          <span>
+            {/* eslint-disable-next-line react/no-unescaped-entities */}
+            Already have an account?
+            <GoToSignup href="/login/">Login</GoToSignup>
+          </span>
         )}
       </div>
     </>

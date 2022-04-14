@@ -6,6 +6,7 @@ $fa-font-path: '../node_modules/@fortawesome/fontawesome-pro/webfonts';
 @import '../../../node_modules/@fortawesome/fontawesome-pro/scss/light.scss';
 
 @import '@fontsource/noto-sans/500.css';
+@import '@fontsource/noto-sans/600.css';
 
 $placeholder: rgba(120, 124, 126, 0.68);
 
@@ -21,6 +22,10 @@ $placeholder: rgba(120, 124, 126, 0.68);
     justify-content: space-between;
 
     label {
+      &.input-error {
+        color: var(--red) !important;
+      }
+
       position: absolute;
       margin-left: 31px;
       color: $placeholder;
@@ -33,7 +38,6 @@ $placeholder: rgba(120, 124, 126, 0.68);
       padding-right: 5px;
       transition: 0.1s ease-in-out all;
       margin-left: 22px;
-
       // display: none;
     }
 
@@ -64,6 +68,12 @@ $placeholder: rgba(120, 124, 126, 0.68);
       &::placeholder {
         opacity: 0;
       }
+
+      &.input-error {
+        border: 2px solid var(--red);
+        border-right: none;
+        color: var(--red);
+      }
     }
 
     .input-icon {
@@ -79,6 +89,11 @@ $placeholder: rgba(120, 124, 126, 0.68);
         right: 30px;
         top: 21px;
         bottom: 20px;
+      }
+      &.icon-error {
+        border: 2px solid var(--red) !important;
+        border-left: none !important;
+        color: var(--red) !important;
       }
     }
 
@@ -116,6 +131,15 @@ $placeholder: rgba(120, 124, 126, 0.68);
         padding-right: 5px;
       }
 
+      &.input-error {
+        border: 2px solid var(--red);
+        border-right: none;
+
+        & ~ label {
+          color: var(--red) !important;
+        }
+      }
+
       border: 2px solid var(--blue);
       border-right: none;
     }
@@ -124,15 +148,28 @@ $placeholder: rgba(120, 124, 126, 0.68);
       input {
         border: 2px solid var(--blue);
         border-right: none;
+
+        &.input-error {
+          border: 2px solid var(--red);
+          border-right: none;
+        }
       }
       .input-icon {
         color: var(--blue) !important;
         border: 2px solid var(--blue) !important;
         border-left: none !important;
+        &.icon-error {
+          border: 2px solid var(--red) !important;
+          border-left: none !important;
+          color: var(--red) !important;
+        }
       }
 
       label {
-        color: var(--blue);
+        color: var(--blue) !important;
+        &.input-error {
+          color: var(--red) !important;
+        }
       }
     }
   }
@@ -225,6 +262,12 @@ $placeholder: rgba(120, 124, 126, 0.68);
 
     .forgot {
       color: var(--blue);
+    }
+
+    .error {
+      color: var(--red);
+      margin-left: 2px;
+      font-weight: 600;
     }
   }
 }

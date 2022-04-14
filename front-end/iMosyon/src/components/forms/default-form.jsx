@@ -11,6 +11,10 @@ export const CheckBox = ({ onChange, checked, label, name }) => {
   )
 }
 
-export const DefaultForm = ({ children }) => {
-  return <div className="input-form">{children}</div>
+export const DefaultForm = ({ children, submit }) => {
+  return (
+    <div className="input-form">
+      <form onSubmit={submit}>{children}</form>
+    </div>
+  )
 }

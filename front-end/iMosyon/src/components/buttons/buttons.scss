@@ -23,6 +23,11 @@
   padding-right: 34px !important;
 }
 
+button:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
 .btn {
   display: flex;
   align-items: center;
