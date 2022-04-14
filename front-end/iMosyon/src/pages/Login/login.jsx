@@ -2,19 +2,35 @@ import { React, useEffect, useState } from 'react'
 import AuthPage from '@/components/auth-user/AuthPage'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faLockKeyhole } from '@fortawesome/pro-regular-svg-icons'
+import axios from 'axios'
 
 export const Login = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [remember, setRemember] = useState(false)
 
-  // const [usernameError, setUsernameError] = useState('')
+  const [usernameError, setUsernameError] = useState('')
   // const [passwordError, setPasswordError] = useState('')
 
   useEffect(() => {
     document.title = 'Login | iMosyon'
     document.getElementsByTagName('body')[0].classList.add('main')
   })
+
+  function submitLogin(e) {
+    e.preventDefault()
+    axios({
+      method: 'POST',
+      url: 'http://localhost:5000/api/user/login',
+      data: { username, password, remember },
+    })
+      .then((response) => {
+        console.log(response)
+      })
+      .catch((error) => {
+        setUsernameError(error.response.data.message)
+      })
+  }
 
   const left = {
     emoji: ['😎', '🔥', '😆'],
@@ -33,7 +49,7 @@ export const Login = () => {
         icon: <FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon>,
         value: username,
         onchange: (e) => setUsername(e.target.value),
-        error: '',
+        error: usernameError,
         required: true,
       },
       {
@@ -53,10 +69,7 @@ export const Login = () => {
       },
     ],
     errors: false,
-    submitHandler: (event) => {
-      event.preventDefault()
-      console.log(username, password)
-    },
+    submitHandler: submitLogin,
   }
 
   return (
