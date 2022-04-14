@@ -1,10 +1,12 @@
-import { React, useEffect, useState } from 'react'
+import { React, useEffect, useState, useContext } from 'react'
 import AuthPage from '@/components/auth-user/AuthPage'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faLockKeyhole } from '@fortawesome/pro-regular-svg-icons'
 import axios from 'axios'
+import { UserAuthContext } from '../../context/UserAuth'
 
 export const Login = () => {
+  const [userAuth, setUserAuth] = useContext(UserAuthContext)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [remember, setRemember] = useState(false)
@@ -16,16 +18,25 @@ export const Login = () => {
     document.title = 'Login | iMosyon'
     document.getElementsByTagName('body')[0].classList.add('main')
   })
+  useEffect(() => {
+    usernameError ? setUsernameError('') : null
+  }, [username, password])
 
   function submitLogin(e) {
     e.preventDefault()
     axios({
       method: 'POST',
-      url: 'http://localhost:5000/api/user/login',
+      url: '/api/user/login',
       data: { username, password, remember },
+      withCredentials: true,
     })
       .then((response) => {
-        console.log(response)
+        console.log(response.headers)
+        let data = response.data
+        setUserAuth({
+          logged_in: data.success,
+          expired_on: data.expired_on,
+        })
       })
       .catch((error) => {
         setUsernameError(error.response.data.message)
