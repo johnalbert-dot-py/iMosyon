@@ -40,16 +40,24 @@ const Navbar = () => {
     <div className={'navbar-wrapper'}>
       <nav className="navbar">
         <div className="navbar-brand">
-          <a href="#" className="brand">
+          <a href="#" className="brand d-animate">
             iMosyon
           </a>
-          <a href="#">Home</a>
-          <a href="#system-description">How it works?</a>
-          <a href="#">About Us</a>
+          <a href="#" className="d-animate">
+            Home
+          </a>
+          <a href="#system-description" className="d-animate">
+            How it works?
+          </a>
+          <a href="#" className="d-animate">
+            About Us
+          </a>
         </div>
 
         <div className="navbar-action">
-          <a href="/register/">Sign Up</a>
+          <a href="/register/" className="d-animate">
+            Sign Up
+          </a>
           <motion.span
             onHoverStart={rotateArrowStraight}
             onHoverEnd={rotateArrowUp}

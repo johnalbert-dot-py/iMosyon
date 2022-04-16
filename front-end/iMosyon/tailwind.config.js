@@ -4,7 +4,19 @@ module.exports = {
   theme: {
     colors: {
       'primary-dark': '#313339',
-      'secondar-dark': '#191A1B',
+      'secondary-dark': '#191A1B',
+      'dark-80': '#404449',
+      'primary-white': '#FDFDFD',
+      gray: '#929292',
+      'secondary-gray': '#A9ABAC',
+
+      'primary-blue': '#2A84FF',
+    },
+    fontFamily: {
+      sans: ['san-serif'],
+      serif: ['serif'],
+      primary: ["'Nunito'"],
+      secondary: ["'Poppins'"],
     },
     extend: {},
   },

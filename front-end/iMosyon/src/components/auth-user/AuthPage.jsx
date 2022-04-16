@@ -14,7 +14,7 @@ export const AuthPage = ({ left, right }) => {
       <LeftSideBackground />
       <div className="auth-content">
         <div className="home-nav">
-          <a href="/">
+          <a href="/" className="d-animate">
             <FontAwesomeIcon icon={faHouse}></FontAwesomeIcon>
           </a>
         </div>
