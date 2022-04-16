@@ -44,7 +44,8 @@ def login():
 @authentication.route("/register", methods=["POST"])
 @cross_origin()
 @expects_json({
-    "full_name": {"type": "string"},
+    "name": {"type": "string"},
+    "email": {"type": "email"},
     "username": {"type": "string"},
     "password": {"type": "string"},
     "required": ["username", "password"]

@@ -15,6 +15,12 @@ export const SignUp = () => {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
 
+  const [fullNameError, setFullNameError] = useState('')
+  const [emailError, setEmailError] = useState('')
+  const [usernameError, setUsernameError] = useState('')
+  const [passwordError, setPasswordError] = useState('')
+  const [confirmPasswordError, setConfirmPasswordError] = useState('')
+
   const registerInputFields = [
     {
       label: 'Full Name',
@@ -68,6 +74,10 @@ export const SignUp = () => {
     document.getElementsByTagName('body')[0].classList.add('main')
   })
 
+  function submitRegister(e) {
+    e.preventDefault()
+  }
+
   const left = {
     emoji: ['😎', '🔥', '😆'],
     heading: 'iMosyon',
@@ -80,10 +90,7 @@ export const SignUp = () => {
       'It seem you are new to our system. Please fill out the information that are required then start using our system 100%.',
     inputFields: [...registerInputFields],
     errors: false,
-    submitHandler: (event) => {
-      event.preventDefault()
-      console.log(username, password)
-    },
+    submitHandler: submitRegister,
   }
 
   return (
