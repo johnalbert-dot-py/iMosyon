@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom'
 import { UserAuthContext } from '@/context/UserAuth'
 
 export const LoginRequired = ({ children }) => {
-  const [userAuth, setUserAuth] = useContext(UserAuthContext)
+  const [userAuth] = useContext(UserAuthContext)
   if (userAuth.logged_in) {
     return children
   }
