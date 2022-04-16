@@ -7,7 +7,7 @@ from flask_jwt_extended import jwt_required
 from flask_cors import cross_origin
 from flask_expects_json import expects_json
 
-from services.authentication import userRegistration
+from services.authentication import userRegistration, userLogin
 
 authentication = Blueprint("authentication", __name__, url_prefix="/api/user")
 
@@ -21,26 +21,7 @@ authentication = Blueprint("authentication", __name__, url_prefix="/api/user")
     }
 )
 def login():
-    username = request.json.get("username", None)
-    password = request.json.get("password", None)
-    remember = request.json.get("remember", None)
-
-    if username != "test" or password != "test":
-        return jsonify({"message": " Username or Password is invalid."}), 401
-
-    if remember:
-        expired_on = timedelta(hours=24 * 15)
-    else:
-        expired_on = timedelta(seconds=20)
-
-    access_token = create_access_token(
-        identity={"username": username, "id": 0}, expires_delta=expired_on, fresh=True
-    )
-    response = jsonify(
-        {"success": True, "expired_on": str(datetime.now() + expired_on)}
-    )
-    set_access_cookies(response, access_token, max_age=expired_on)
-    return response, 200
+    return userLogin(request)
 
 
 @authentication.route("/register", methods=["POST"])
@@ -55,7 +36,6 @@ def login():
 )
 def register():
     return userRegistration(request)
-    # return jsonify({"message": "Successfully created user"}), 201
 
 
 @authentication.route("/me", methods=["GET"])
