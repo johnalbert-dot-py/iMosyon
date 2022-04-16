@@ -79,7 +79,7 @@ export const Login = () => {
         },
       },
     ],
-    errors: false,
+    errors: usernameError ? true : false,
     submitHandler: submitLogin,
   }
 

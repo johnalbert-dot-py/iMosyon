@@ -265,6 +265,7 @@ $placeholder: rgba(120, 124, 126, 0.68);
     }
 
     .error {
+      transition: .2s ease-in-out;
       color: var(--red);
       margin-left: 2px;
       font-weight: 600;

@@ -28,16 +28,16 @@ export const SignUp = () => {
       icon: <FontAwesomeIcon icon={faUserHair}></FontAwesomeIcon>,
       value: fullName,
       onchange: (e) => setFullName(e.target.value),
-      error: '',
+      error: fullNameError,
       required: true,
     },
     {
       label: 'Email',
-      type: 'text',
+      type: 'email',
       icon: <FontAwesomeIcon icon={faAt}></FontAwesomeIcon>,
       value: email,
       onchange: (e) => setEmail(e.target.value),
-      error: '',
+      error: emailError,
       required: true,
     },
     {
@@ -46,7 +46,7 @@ export const SignUp = () => {
       icon: <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>,
       value: username,
       onchange: (e) => setUsername(e.target.value),
-      error: '',
+      error: usernameError,
       required: true,
     },
     {
@@ -56,7 +56,7 @@ export const SignUp = () => {
       value: password,
       onchange: (e) => setPassword(e.target.value),
       required: true,
-      error: '',
+      error: passwordError,
     },
     {
       label: 'Confirm Password',
@@ -65,7 +65,7 @@ export const SignUp = () => {
       value: confirmPassword,
       onchange: (e) => setConfirmPassword(e.target.value),
       required: true,
-      error: '',
+      error: confirmPasswordError,
     },
   ]
 
@@ -76,6 +76,10 @@ export const SignUp = () => {
 
   function submitRegister(e) {
     e.preventDefault()
+
+    if (password != confirmPassword) {
+      setConfirmPasswordError('Password and Confirm Password must be match.')
+    }
   }
 
   const left = {

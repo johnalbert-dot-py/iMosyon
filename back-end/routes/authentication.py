@@ -7,17 +7,19 @@ from flask_jwt_extended import jwt_required
 from flask_cors import cross_origin
 from flask_expects_json import expects_json
 
+from services.authentication import userRegistration
 
 authentication = Blueprint("authentication", __name__, url_prefix="/api/user")
 
 
 @authentication.route("/login", methods=["POST"])
-@cross_origin()
-@expects_json({
-    "username": {"type": "string"},
-    "password": {"type": "string"},
-    "required": ["username", "password"]
-})
+@expects_json(
+    {
+        "username": {"type": "string"},
+        "password": {"type": "string"},
+        "required": ["username", "password"],
+    }
+)
 def login():
     username = request.json.get("username", None)
     password = request.json.get("password", None)
@@ -42,28 +44,22 @@ def login():
 
 
 @authentication.route("/register", methods=["POST"])
-@cross_origin()
-@expects_json({
-    "name": {"type": "string"},
-    "email": {"type": "email"},
-    "username": {"type": "string"},
-    "password": {"type": "string"},
-    "required": ["username", "password"]
-})
+@expects_json(
+    {
+        "name": {"type": "string"},
+        "email": {"type": "email"},
+        "username": {"type": "string"},
+        "password": {"type": "string"},
+        "required": ["username", "password", "email", "name"],
+    }
+)
 def register():
-    username = request.json.get("username", None)
-    password = request.json.get("password", None)
-    email = request.json.get("email", None)
-
-    if username is None or password is None or email is None:
-        return jsonify({"message": "Missing username or password"}), 400
-
-    return jsonify({"message": "Successfully created user"}), 201
+    return userRegistration(request)
+    # return jsonify({"message": "Successfully created user"}), 201
 
 
 @authentication.route("/me", methods=["GET"])
 @jwt_required()
-@cross_origin()
 def me():
     username = get_jwt_identity()
     print(request.cookies)
