@@ -1,10 +1,16 @@
-import { React } from 'react'
+import { React, useEffect } from 'react'
+// import './index.css'
+import Sidebar from '@/components/dashboard/sidebar.jsx'
 
 export const Dashboard = (props) => {
+  useEffect(() => {
+    document.title = 'Dashboard | iMosyon'
+  })
+
   return (
-    <>
-      <h1>Hello User</h1>
-    </>
+    <div className="p-0">
+      <Sidebar />
+    </div>
   )
 }
 

@@ -1,9 +1,13 @@
-@import "@fontsource/poppins/600.css";
-@import "@fontsource/poppins/700.css";
-@import "@fontsource/poppins/800.css";
+@import '@fontsource/poppins/600.css';
+@import '@fontsource/poppins/700.css';
+@import '@fontsource/poppins/800.css';
 
 .home {
-  background: radial-gradient(78.01% 78.01% at 50% 21.99%, #2F3134 0%, #171818 81.65%);
+  background: radial-gradient(
+    78.01% 78.01% at 50% 21.99%,
+    #2f3134 0%,
+    #171818 81.65%
+  );
   background-repeat: no-repeat;
   background-size: cover 100%;
   background-position: center;
@@ -15,7 +19,11 @@
   overflow-x: hidden;
 
   @media screen and (max-width: 767px) {
-    background: radial-gradient(363.59% 109.19% at 44.44% 25.42%, #1C1D1E 0%, #273E49 100%)
+    background: radial-gradient(
+      363.59% 109.19% at 44.44% 25.42%,
+      #1c1d1e 0%,
+      #273e49 100%
+    );
   }
 }
 
@@ -79,7 +87,7 @@ main {
       display: flex;
       flex-direction: column;
       align-content: flex-start;
-      justify-content: start;
+      justify-content: flex-start;
       gap: 10px;
       padding-left: 29px;
       flex-wrap: wrap;
@@ -115,7 +123,6 @@ main {
       margin-top: 300px;
     }
   }
-
 }
 
 section#system-description {
@@ -137,5 +144,4 @@ section#system-description {
       font-size: 37px;
     }
   }
-
 }
