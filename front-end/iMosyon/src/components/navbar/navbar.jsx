@@ -62,13 +62,13 @@ const Navbar = () => {
             initial={{ opacity: 0 }}
           >
             <BtnLightCircle
-              size="btn-md"
-              width="btn-sm-w"
+              size="btnd-md"
+              width="btnd-sm-w"
               show_on_small="true"
               onClick={() => redirectTo('/login/')}
             >
               Login &nbsp;
-              <FontAwesomeIcon icon={faArrowUpRight} style={arrowStyle} />{' '}
+              <FontAwesomeIcon icon={faArrowUpRight} style={arrowStyle} />
               &nbsp;
             </BtnLightCircle>
           </motion.span>

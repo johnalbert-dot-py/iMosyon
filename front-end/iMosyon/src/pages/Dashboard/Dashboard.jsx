@@ -1,5 +1,5 @@
 import { React, useEffect } from 'react'
-// import './index.css'
+import './index.css'
 import Sidebar from '@/components/dashboard/sidebar.jsx'
 
 export const Dashboard = (props) => {

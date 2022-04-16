@@ -6,7 +6,7 @@ import burger from '@/assets/burger.svg'
 export const BtnLight = ({ ...props }) => {
   return (
     <button
-      className={`btn btn-light ${props.size} ${
+      className={`btnd btnd-light ${props.size} ${
         props.width ? props.width : ''
       } show-${props.show_on_small ? 'true' : 'false'}`}
       {...props}
@@ -19,7 +19,7 @@ export const BtnLight = ({ ...props }) => {
 export const BtnLightCircle = ({ ...props }) => {
   return (
     <button
-      className={`btn btn-light btn-circle ${props.size} ${
+      className={`btnd btnd-light btnd-circle ${props.size} ${
         props.width ? props.width : ''
       } show-${props.show_on_small ? 'true' : 'false'}`}
       {...props}
@@ -32,7 +32,7 @@ export const BtnLightCircle = ({ ...props }) => {
 export const BtnLightCircleOutline = ({ ...props }) => {
   return (
     <button
-      className={`btn btn-light-outline btn-circle ${props.size} ${
+      className={`btnd btnd-light-outline btnd-circle ${props.size} ${
         props.width ? props.width : ''
       } show-${props.show_on_small ? 'true' : 'false'}`}
       {...props}
@@ -46,7 +46,7 @@ export const BtnBurger = ({ ...props }) => {
   return (
     <a
       href="#"
-      className={`btn btn-burger ${props.size} ${
+      className={`btnd btnd-burger ${props.size} ${
         props.width ? props.width : ''
       } show-${props.show_on_small ? 'true' : 'false'}`}
       {...props}
@@ -59,7 +59,7 @@ export const BtnBurger = ({ ...props }) => {
 export const BtnDark = ({ ...props }) => {
   return (
     <button
-      className={`btn btn-dark ${props.size} ${
+      className={`btnd btnd-dark ${props.size} ${
         props.width ? props.width : ''
       } show-${props.show_on_small ? 'true' : 'false'}`}
       {...props}

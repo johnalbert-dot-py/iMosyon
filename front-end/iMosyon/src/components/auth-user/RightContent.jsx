@@ -85,8 +85,8 @@ export const RightContent = ({
               )
             })}
             <BtnDark
-              size="btn-md"
-              width="btn-lg-100"
+              size="btnd-md"
+              width="btnd-lg-100"
               type="submit"
               show_on_small="true"
               disabled={errors}

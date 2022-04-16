@@ -12,7 +12,7 @@ export const AuthPage = ({ left, right }) => {
   return (
     <>
       <LeftSideBackground />
-      <div className="contents">
+      <div className="auth-content">
         <div className="home-nav">
           <a href="/">
             <FontAwesomeIcon icon={faHouse}></FontAwesomeIcon>

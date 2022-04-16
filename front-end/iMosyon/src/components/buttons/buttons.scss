@@ -28,7 +28,7 @@ button:disabled {
   cursor: not-allowed;
 }
 
-.btn {
+.btnd {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -36,7 +36,7 @@ button:disabled {
 }
 
 // sizes
-.btn-lg {
+.btnd-lg {
   @include btn-lg-width;
 
   padding: {
@@ -49,7 +49,7 @@ button:disabled {
   font-family: 'Poppins';
 }
 
-.btn-md {
+.btnd-md {
   @include btn-md-width;
   padding: {
     top: 10px !important;
@@ -64,7 +64,7 @@ button:disabled {
   letter-spacing: 0.6px;
 }
 
-.btn-sm {
+.btnd-sm {
   @include btn-sm-width;
   padding: {
     top: 7px !important;
@@ -78,31 +78,31 @@ button:disabled {
 
 // width sie
 
-.btn-lg-w {
+.btnd-lg-w {
   @include btn-lg-width;
 }
 
-.btn-md-w {
+.btnd-md-w {
   @include btn-md-width;
 }
 
-.btn-sm-w {
+.btnd-sm-w {
   @include btn-sm-width;
 }
 
-.btn-lg-100 {
+.btnd-lg-100 {
   width: 100%;
 }
 
 // radius
 
-.btn-circle {
+.btnd-circle {
   border-radius: 25px;
 }
 
 // colors
 
-.btn-light {
+.btnd-light {
   @include defaultTransition;
   background-color: var(--primary-white);
   color: var(--primary-dark);
@@ -118,39 +118,39 @@ button:disabled {
   }
 }
 
-.btn-dark {
+.btnd-dark {
   @include defaultTransition;
-  background-color: var(--primary-dark);
-  color: var(--primary-white);
+  background-color: var(--primary-dark) !important;
+  color: var(--primary-white) !important;
 
   &:hover {
-    background-color: #494a4d;
-    color: var(--primary-white);
+    background-color: #494a4d !important;
+    color: var(--primary-white) !important;
   }
 
   &:active {
-    background-color: #494a4d;
-    color: var(--primary-white);
+    background-color: #494a4d !important;
+    color: var(--primary-white) !important;
   }
 }
 
-.btn-light-outline {
+.btnd-light-outline {
   @include defaultTransition;
-  background-color: rgba(0, 0, 0, 0);
-  color: var(--primary-white);
+  background-color: rgba(0, 0, 0, 0) !important;
+  color: var(--primary-white) !important;
 
   &:hover {
-    background-color: var(--primary-dark);
-    color: var(--primary-white);
-    margin: -2px;
+    background-color: var(--primary-dark) !important;
+    color: var(--primary-white) !important;
+    margin: -2px !important;
   }
-  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.25) !important;
 }
 
-.btn-dark-outline {
+.btnd-dark-outline {
   @include defaultTransition;
-  background-color: transparent;
-  color: var(--primary-white);
+  background-color: transparent !important;
+  color: var(--primary-white) !important;
 
   &:hover {
     background-color: var(--primary-dark);
@@ -161,7 +161,7 @@ button:disabled {
 
 // custom
 
-.btn-burger {
+.btnd-burger {
   color: #fff;
   padding: {
     left: 0px !important;
