@@ -31,6 +31,7 @@ export const RightContent = ({
   message,
   inputFields,
   submitHandler,
+  buttonContent,
   errors,
 }) => {
   return (
@@ -90,11 +91,17 @@ export const RightContent = ({
               show_on_small="true"
               disabled={errors}
             >
-              {window.location.pathname == '/login/' ? (
-                <>Login</>
-              ) : (
-                <>Sign Up</>
-              )}
+              {(() => {
+                if (buttonContent) {
+                  return buttonContent
+                } else {
+                  return window.location.pathname == '/login/' ? (
+                    <>Login</>
+                  ) : (
+                    <>Sign Up</>
+                  )
+                }
+              })()}
             </BtnDark>
             <GoHome href="#">
               <FontAwesomeIcon icon={faArrowLeft} />

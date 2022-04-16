@@ -20,7 +20,7 @@ export const UserAuthProvider = (props) => {
   })
 
   return (
-    <UserAuthContext.Provider value={[userAuth, userAuth]}>
+    <UserAuthContext.Provider value={[userAuth, setUserAuth]}>
       {props.children}
     </UserAuthContext.Provider>
   )

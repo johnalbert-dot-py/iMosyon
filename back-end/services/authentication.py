@@ -26,11 +26,12 @@ def userRegistration(request):
     print(username, password, name, email)
 
     # check if username and email exists
+    if User.query.filter_by(email=email).first():
+        return jsonify({"message": "Email already exists", "field": "email"}), 400
+
     if User.query.filter_by(username=username).first():
         return jsonify({"message": "Username already exists", "field": "username"}), 400
 
-    if User.query.filter_by(email=email).first():
-        return jsonify({"message": "Email already exists", "field": "email"}), 400
 
     # create user
     password = password_generator(password)
@@ -46,7 +47,7 @@ def userLogin(request):
     remember = request.json.get("remember", None)
 
     if username is None and password is None:
-        return jsonify({"message": "Username and Password is required."})
+        return jsonify({"message": "Username and Password is required."}), 400
 
     user = User.query.filter_by(username=username).first()
     if user:
@@ -67,12 +68,12 @@ def userLogin(request):
                     "expired_on": str(datetime.now() + expired_on),
                 }
             )
-            set_access_cookies(response, access_token, max_age=expired_on)
+            # set_access_cookies(response, access_token, max_age=expired_on)
             return response, 200
 
         else:
             return jsonify(
-                {"message": "Username or Password is invalid.", "field": "password"}
-            )
+                {"message": "Please check your credentials.", "field": "password"}
+            ), 400
     else:
         return jsonify({"message": "Username is invalid.", "field": "username"}), 400

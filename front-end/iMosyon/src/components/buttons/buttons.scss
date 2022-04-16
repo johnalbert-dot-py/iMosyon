@@ -56,7 +56,7 @@ button:disabled {
     bottom: 10px !important;
   }
 
-  font-size: 1.063rem !important;
+  font-size: clamp(1.063rem, 1.063rem, 1.3rem) !important;
   font-weight: 500 !important;
   font-style: normal !important;
   border-radius: 6px;

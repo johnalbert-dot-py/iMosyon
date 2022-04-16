@@ -28,6 +28,7 @@ export const AuthPage = ({ left, right }) => {
           message={right.message}
           inputFields={right.inputFields}
           submitHandler={right.submitHandler}
+          buttonContent={right.buttonContent}
           errors={right.errors}
         />
       </div>

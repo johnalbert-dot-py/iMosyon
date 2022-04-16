@@ -70,8 +70,8 @@ $placeholder: rgba(120, 124, 126, 0.68);
       }
 
       &.input-error {
-        border: 2px solid var(--red);
-        border-right: none;
+        border: 2px solid var(--red) !important;
+        border-right: none !important;
         color: var(--red);
       }
     }
