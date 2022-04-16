@@ -112,7 +112,7 @@ export const RightContent = ({
       </div>
       <div></div>
       <div className="content-footer">
-        {window.location.pathname == '/login/' ? (
+        {window.location.pathname.includes('/login') ? (
           <>
             <span>
               {/* eslint-disable-next-line react/no-unescaped-entities */}
