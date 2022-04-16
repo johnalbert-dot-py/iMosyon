@@ -118,7 +118,7 @@ export const Login = () => {
         }}
       />
     ) : (
-      'Login Up'
+      'Login'
     ),
     errors: usernameError ? true : false,
     submitHandler: submitLogin,
