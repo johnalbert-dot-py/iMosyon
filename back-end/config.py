@@ -12,6 +12,7 @@ def config_app(app):
     app.config["JWT_TOKEN_LOCATION"] = ["cookies"]
     app.config["JWT_SECRET_KEY"] = ".Tih!+wH}^|xdJ|(#sR:iG<7F)?N3t"
     app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(seconds=20)
+    app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(seconds=20)
 
     # sqlalchemy
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + \
