@@ -10,7 +10,7 @@ import { faCircleNotch } from '@fortawesome/pro-solid-svg-icons'
 import 'react-toastify/dist/ReactToastify.css'
 
 export const Login = () => {
-  const [userAuth, setUserAuth] = useContext(UserAuthContext)
+  const [, setUserAuth] = useContext(UserAuthContext)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [remember, setRemember] = useState(false)

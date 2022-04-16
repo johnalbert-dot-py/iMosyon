@@ -7,8 +7,8 @@ import '@fontsource/poppins'
 import '@fontsource/noto-sans'
 import './navbar.scss'
 
-import { BtnLightCircle, BtnBurger } from '@/components/buttons/button.jsx'
-import { Route, useNavigate } from 'react-router-dom'
+import { BtnLightCircle } from '@/components/buttons/button.jsx'
+// import { Route, useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
   function redirectTo(path = '/') {
