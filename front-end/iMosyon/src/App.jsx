@@ -5,28 +5,26 @@ import { UserAuthProvider } from './context/UserAuth'
 import Home from '@/pages/Home/home'
 import SignUp from '@/pages/SignUp/sign-up'
 import Login from '@/pages/Login/login'
+import Dashboard from '@/pages/Dashboard/Dashboard'
+import LoginRequired from '@/components/LoginRequired'
 
 const App = () => {
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <UserAuthProvider>
-            <Home />
-          </UserAuthProvider>
-        }
-      />
-      <Route path="/register/" element={<SignUp />} />
-      <Route
-        path="/login/"
-        element={
-          <UserAuthProvider>
-            <Login />{' '}
-          </UserAuthProvider>
-        }
-      />
-    </Routes>
+    <UserAuthProvider>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/register/" element={<SignUp />} />
+        <Route path="/login/" element={<Login />} />
+        <Route
+          path="/user/dashboard"
+          element={
+            <LoginRequired>
+              <Dashboard />
+            </LoginRequired>
+          }
+        />
+      </Routes>
+    </UserAuthProvider>
   )
 }
 

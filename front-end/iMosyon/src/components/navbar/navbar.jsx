@@ -49,7 +49,7 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-action">
-          <a href="/sign-up/">Sign Up</a>
+          <a href="/register/">Sign Up</a>
           <motion.span
             onHoverStart={rotateArrowStraight}
             onHoverEnd={rotateArrowUp}
@@ -72,8 +72,6 @@ const Navbar = () => {
               &nbsp;
             </BtnLightCircle>
           </motion.span>
-
-          <BtnBurger size="btn-md" show_on_small="true" />
         </div>
       </nav>
     </div>

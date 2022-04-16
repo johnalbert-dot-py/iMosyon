@@ -17,14 +17,13 @@ export const Login = () => {
 
   const [usernameError, setUsernameError] = useState('')
   const [passwordError, setPasswordError] = useState('')
-  const [loginMessage, setLoginMessage] = useState('')
 
   const [sending, setSending] = useState(false)
-  const notify = (error = false) => {
+  const notify = ({ message, error }) => {
     if (error) {
-      toast.error(loginMessage)
+      toast.error(message)
     } else {
-      toast.success(loginMessage, {
+      toast.success(message, {
         onClose: () => {
           window.location.href = '/user/dashboard/'
         },
@@ -51,13 +50,12 @@ export const Login = () => {
       withCredentials: true,
     })
       .then((response) => {
-        let data = response.data
         setSending(false)
-        setLoginMessage(data.message)
-        notify()
+        let data = response.data
+        notify({ message: data.message, error: false })
         setUserAuth({
           logged_in: true,
-          expired_on: data.expired_on,
+          expired_on: data['expired_on'],
         })
       })
       .catch((error) => {

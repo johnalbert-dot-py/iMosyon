@@ -55,10 +55,10 @@ def userLogin(request):
             if remember:
                 expired_on = timedelta(hours=24 * 15)
             else:
-                expired_on = timedelta(hours=24)
+                expired_on = timedelta(seconds=40)
 
             access_token = create_access_token(
-                identity={"username": username, "id": 0},
+                identity={"username": username, "id": user.id},
                 expires_delta=expired_on,
                 fresh=True,
             )
@@ -68,7 +68,7 @@ def userLogin(request):
                     "expired_on": str(datetime.now() + expired_on),
                 }
             )
-            # set_access_cookies(response, access_token, max_age=expired_on)
+            set_access_cookies(response, access_token, max_age=expired_on)
             return response, 200
 
         else:

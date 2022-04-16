@@ -103,7 +103,7 @@ export const RightContent = ({
                 }
               })()}
             </BtnDark>
-            <GoHome href="#">
+            <GoHome href="/">
               <FontAwesomeIcon icon={faArrowLeft} />
               Go back to Home
             </GoHome>
