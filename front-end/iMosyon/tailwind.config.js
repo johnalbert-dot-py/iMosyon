@@ -12,6 +12,7 @@ module.exports = {
       'secondary-gray': '#A9ABAC',
 
       'primary-blue': '#2A84FF',
+      danger: '',
     },
     fontFamily: {
       sans: ['san-serif'],
