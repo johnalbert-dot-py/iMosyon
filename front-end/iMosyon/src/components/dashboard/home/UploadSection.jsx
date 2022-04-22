@@ -56,6 +56,7 @@ function formatBytes(bytes, decimals = 2) {
 
 export const UploadSection = ({ setUploadFiles }) => {
   const [uploadedFiles, setUploadFilesLocal] = useState([])
+
   const onDrop = useCallback((acceptedFiles) => {
     setUploadFilesLocal(acceptedFiles)
   })
@@ -153,7 +154,6 @@ export const UploadSection = ({ setUploadFiles }) => {
             <button
               onClick={() => {
                 setUploadFiles(uploadedFiles[0])
-                console.log('Uploading Files')
               }}
               className="px-8 py-5 bg-secondary-dark mt-4 text-primary-white rounded-md drop-shadow-lg border-2 border-primary-dark-light border-solid hover:bg-opacity-50"
             >

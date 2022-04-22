@@ -5,6 +5,7 @@ import Sidebar from '@/components/dashboard/sidebar'
 import MainContent from '@/components/dashboard/main-content'
 import Navbar from '@/components/dashboard/navbar'
 import UploadSection from '@/components/dashboard/home/UploadSection'
+import Loading from '@/components/dashboard/loading'
 
 import './index.css'
 
@@ -15,6 +16,7 @@ export const Dashboard = (props) => {
 
   const [uploadedFiles, setUploadedFiles] = useState(null)
   const [words, setWords] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
 
   const processExcel = function (data) {
     const workbook = read(data, { type: 'binary' })
@@ -40,10 +42,11 @@ export const Dashboard = (props) => {
 
   function setUpload(uploaded) {
     setUploadedFiles(uploaded)
+    setIsLoading(true)
   }
 
   return (
-    <div className="p-0">
+    <div className="p-0 overflow-x-hidden">
       <Sidebar />
       <MainContent>
         <Navbar>
@@ -51,7 +54,13 @@ export const Dashboard = (props) => {
             Log Out
           </button>
         </Navbar>
-        <UploadSection setUploadFiles={setUpload}></UploadSection>
+        {!isLoading ? (
+          <UploadSection setUploadFiles={setUpload}></UploadSection>
+        ) : (
+          <Loading>
+            <div className="text-2xl">0 / {words.length}</div>
+          </Loading>
+        )}
       </MainContent>
     </div>
   )
