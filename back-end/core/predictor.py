@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Optional
+from typing import Optional, Union
 
 
 @dataclass
@@ -23,11 +23,11 @@ class EmotionPrediction:
             "Disgust",
         ]
 
-    def predict(self) -> str:
+    def predict(self) -> Union[str, float]:
         # enter your model here!
         sentence = self.sentence
-        return ""
+        return ["", 0.0]
 
-    def analyze_sentence(self) -> str:
+    def analyze_sentence(self) -> Union[str, float]:
         predicted_emotion = self.predict()
-        return predicted_emotion.capitalize()
+        return [predicted_emotion[0].capitalize(), predicted_emotion[1]]

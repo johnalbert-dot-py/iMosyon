@@ -8,6 +8,7 @@ from jsonschema import ValidationError
 
 # blueprints
 from routes.authentication import authentication
+from routes.predict import predictor
 
 app = Flask(__name__)
 
@@ -17,7 +18,6 @@ def bad_request(error):
     if isinstance(error.description, ValidationError):
         original_error = error.description
         return make_response(jsonify({"error": original_error.message}), 400)
-    # handle other "Bad Request"-errors
     return error
 
 
@@ -37,6 +37,7 @@ def create_app():
             pass
 
     app.register_blueprint(authentication, bcrypt=bcrypt)
+    app.register_blueprint(predictor)
     app.run(debug=True, host="0.0.0.0")
 
 
