@@ -24,5 +24,5 @@ class iMosyonConfig:
     """
     MySQL
     """
-    SQLALCHEMY_DATABASE_URI = f"mysql://{config['MYSQL_USER']}:{config['MYSQL_PASSWORD']}@{config['MYSQL_HOST']}/{config['MYSQL_DB']}"
+    SQLALCHEMY_DATABASE_URI = f"mysql+pymysql://{config['MYSQL_USER']}:{config['MYSQL_PASSWORD']}@{config['MYSQL_HOST']}/{config['MYSQL_DB']}"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
