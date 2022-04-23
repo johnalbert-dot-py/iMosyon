@@ -1,7 +1,8 @@
 from flask import Flask
 from config import iMosyonConfig
-from extensions import jwt, cors, bcrypt, migrate
-from models import db, User
+from extensions import jwt, cors, bcrypt
+from flask_migrate import Migrate
+from models import db
 from flask import make_response, jsonify
 from jsonschema import ValidationError
 
@@ -12,7 +13,6 @@ from routes.predict import predictor
 
 app = Flask(__name__)
 
-
 @app.errorhandler(400)
 def bad_request(error):
     if isinstance(error.description, ValidationError):
@@ -20,27 +20,17 @@ def bad_request(error):
         return make_response(jsonify({"error": original_error.message}), 400)
     return error
 
+app.config.from_object(iMosyonConfig)
+jwt.init_app(app)
+cors.init_app(app)
+db.init_app(app)
+bcrypt.init_app(app)
+migrate = Migrate(app, db)
 
-def create_app():
-    app.config.from_object(iMosyonConfig)
-    jwt.init_app(app)
-    cors.init_app(app)
-    db.init_app(app)
-    bcrypt.init_app(app)
-    migrate.init_app(app, db)
 
-    with app.app_context():
-        try:
-            db.create_all()
-            db.session.commit()
-        except Exception as e:
-            print("Error:", e)
-            pass
-
+if __name__ == "__main__":
     app.register_blueprint(authentication, bcrypt=bcrypt)
     app.register_blueprint(predictor)
     app.run(debug=True, host="0.0.0.0")
 
 
-if __name__ == "__main__":
-    create_app()
