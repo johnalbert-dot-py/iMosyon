@@ -8,7 +8,6 @@ predictor = Blueprint("predictor", __name__, url_prefix="/api")
 
 
 @predictor.route("/predict", methods=["POST"])
-
 @jwt_required()
 def predict():
     try:
@@ -19,4 +18,9 @@ def predict():
         return jsonify(predict_result), 400
 
     except Exception as e:
-        return jsonify({"success": False,"message": "Something went wrong"}), 500
+        return (
+            jsonify(
+                {"success": False, "message": "Something went wrong", "reason": str(e)}
+            ),
+            500,
+        )

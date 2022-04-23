@@ -6,14 +6,12 @@ from models import User, PredictedWord, UsersPredictedWords, db
 
 def predict(words, user):
 
-    result = {
-        "success": False,
-    }
+    response = {"success": False}
 
-    user = User.query.filter_by(id=user).first()
+    user = User.query.filter_by(id=user["id"], username=user["username"]).first()
     if not user:
-        result["message"] = "User not found"
-        return result
+        response["message"] = "User not found"
+        return response
 
     users_predicted_words = UsersPredictedWords(user_id=user.id)
     db.session.add(users_predicted_words)
@@ -34,9 +32,9 @@ def predict(words, user):
     try:
         user.words.append(users_predicted_words)
         db.session.commit()
-        result["success"] = True
-        result["user_predict_id"] = "#"
+        response["success"] = True
+        response["user_predict_id"] = str(users_predicted_words.predict_id)
     except Exception as e:
-        result["message"] = "Error: {}".format(e)
+        response["message"] = f"Error: {str(e)}"
 
-    return result
+    return response
