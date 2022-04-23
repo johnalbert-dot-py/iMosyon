@@ -25,7 +25,16 @@ class EmotionPrediction:
         ]
 
     def predict(self) -> Union[str, float]:
-        # enter your model here!
+        """
+        Return a Prediciton from the main model.
+        Enter the main function on your model that accepts
+        a sentence and return a prediction.
+
+        Returns:
+            str: The predicted emotion.
+            float: The accuracy of the prediction.
+
+        """
         sentence = self.sentence
         return ["", 0.0]
 

@@ -13,7 +13,7 @@ predictor = Blueprint("predictor", __name__, url_prefix="/api")
 def predict():
     try:
         user = get_jwt_identity()
-        predict_result = main_predict(request.json.get("word"), user)
+        predict_result = main_predict(request.json.get("words"), user)
     except Exception as e:
         print(e)
         return jsonify({"error": "Something went wrong"}), 500

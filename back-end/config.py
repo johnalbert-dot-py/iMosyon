@@ -6,15 +6,15 @@ import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 
-def config_app(app):
+class iMosyonConfig:
     # jwt
-    app.config["JWT_COOKIE_SECURE"] = True
-    app.config["JWT_TOKEN_LOCATION"] = ["cookies"]
-    app.config["JWT_SECRET_KEY"] = ".Tih!+wH}^|xdJ|(#sR:iG<7F)?N3t"
-    app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(seconds=20)
-    app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(seconds=20)
+    JWT_COOKIE_SECURE = True
+    JWT_TOKEN_LOCATION = ["cookies"]
+    JWT_SECRET_KEY = ".Tih!+wH}^|xdJ|(#sR:iG<7F)?N3t"
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(seconds=20)
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(seconds=20)
 
     # sqlalchemy
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + \
+    SQLALCHEMY_DATABASE_URI = "sqlite:///" + \
         os.path.join(basedir, "iMosyon.db")
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    SQLALCHEMY_TRACK_MODIFICATIONS = False

@@ -1,5 +1,6 @@
 import { React, useEffect, useState } from 'react'
 import { read, utils } from 'xlsx/xlsx.mjs'
+import Cookies from 'js-cookie'
 
 import Sidebar from '@/components/dashboard/sidebar'
 import MainContent from '@/components/dashboard/main-content'
@@ -8,6 +9,7 @@ import UploadSection from '@/components/dashboard/home/UploadSection'
 import Loading from '@/components/dashboard/loading'
 
 import './index.css'
+import axios from 'axios'
 
 export const Dashboard = (props) => {
   useEffect(() => {
@@ -16,6 +18,7 @@ export const Dashboard = (props) => {
 
   const [uploadedFiles, setUploadedFiles] = useState(null)
   const [words, setWords] = useState([])
+  const [predictedWords, setPredictedWords] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 
   const processExcel = function (data) {
@@ -40,6 +43,30 @@ export const Dashboard = (props) => {
     console.log(uploadedFiles)
   }, [uploadedFiles])
 
+  useEffect(() => {
+    if (words.length > 0) {
+      axios({
+        method: 'post',
+        url: '/api/predict',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': Cookies.get('csrf_access_token'),
+        },
+        data: {
+          words: words,
+        },
+        withCredentials: true,
+      })
+        .then((response) => {
+          setIsLoading(false)
+          setPredictedWords(response.data['results'])
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
+  }, [words])
+
   function setUpload(uploaded) {
     setUploadedFiles(uploaded)
     setIsLoading(true)
@@ -57,9 +84,7 @@ export const Dashboard = (props) => {
         {!isLoading ? (
           <UploadSection setUploadFiles={setUpload}></UploadSection>
         ) : (
-          <Loading>
-            <div className="text-2xl">0 / {words.length}</div>
-          </Loading>
+          <Loading></Loading>
         )}
       </MainContent>
     </div>

@@ -1,6 +1,6 @@
 from flask import Flask
-from config import config_app
-from extensions import jwt, cors, bcrypt
+from config import iMosyonConfig
+from extensions import jwt, cors, bcrypt, migrate
 from models import db, User
 from flask import make_response, jsonify
 from jsonschema import ValidationError
@@ -22,11 +22,12 @@ def bad_request(error):
 
 
 def create_app():
-    config_app(app)
+    app.config.from_object(iMosyonConfig)
     jwt.init_app(app)
     cors.init_app(app)
     db.init_app(app)
     bcrypt.init_app(app)
+    migrate.init_app(app, db)
 
     with app.app_context():
         try:
