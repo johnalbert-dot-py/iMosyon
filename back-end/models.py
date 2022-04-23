@@ -19,4 +19,4 @@ class PredictedWord(db.Model):
     word = db.Column(db.Text, nullable=False)
     emotion = db.Column(db.String(120), nullable=False)
     accuracy = db.Column(db.Float, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
