@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from typing import Optional, Union
 from random import uniform, randint
+from time import sleep
 
 
 @dataclass
@@ -42,6 +43,7 @@ class EmotionPrediction:
         """
         Return a random emotion prediction.
         """
+        sleep(randint(1, 2))
         return [
             self.expected_emotions()[
                 randint(0, len(self.expected_emotions()) - 1)

@@ -14,8 +14,9 @@ def predict():
     try:
         user = get_jwt_identity()
         predict_result = main_predict(request.json.get("words"), user)
-    except Exception as e:
-        print(e)
-        return jsonify({"error": "Something went wrong"}), 500
+        if predict_result["success"]:
+            return jsonify(predict_result), 200
+        return jsonify(predict_result), 400
 
-    return jsonify(predict_result), 200
+    except Exception as e:
+        return jsonify({"success": False,"message": "Something went wrong"}), 500
