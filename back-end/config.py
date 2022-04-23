@@ -1,10 +1,10 @@
-from datetime import datetime
 from datetime import timedelta
-from datetime import timezone
+from dotenv import dotenv_values
+
 import os
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-
+config = dotenv_values(".env")
 
 class iMosyonConfig:
     # jwt
@@ -15,6 +15,14 @@ class iMosyonConfig:
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(seconds=20)
 
     # sqlalchemy
-    SQLALCHEMY_DATABASE_URI = "sqlite:///" + \
-        os.path.join(basedir, "iMosyon.db")
+    """
+    SQLITE
+    """
+    # SQLALCHEMY_DATABASE_URI = "sqlite:///" + \
+    #     os.path.join(basedir, "iMosyon.db")
+
+    """
+    MySQL
+    """
+    SQLALCHEMY_DATABASE_URI = f"mysql://{config['MYSQL_USER']}:{config['MYSQL_PASSWORD']}@{config['MYSQL_HOST']}/{config['MYSQL_DB']}"
     SQLALCHEMY_TRACK_MODIFICATIONS = False

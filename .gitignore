@@ -3,3 +3,4 @@ front-end/node_modules/
 
 *.pyc
 front-end/iMosyon/.env
+back-end/.env
