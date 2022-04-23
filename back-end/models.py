@@ -18,7 +18,7 @@ class User(db.Model):
 class UsersPredictedWords(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    predict_id = db.Column(db.String(80), unique=True, nullable=True)
+    predict_id = db.Column(db.String(12), unique=True, nullable=True)
     predicted_words = db.relationship('PredictedWord', backref="user_words", lazy="select")
 
     created_at = db.Column(db.DateTime, default=db.func.now())
@@ -26,7 +26,7 @@ class UsersPredictedWords(db.Model):
 
     def __init__(self, *args, **kwargs):
         if not self.predict_id:
-            self.predict_id = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(8))
+            self.predict_id = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(12))
         print("PREDICT ID: ", self.predict_id)
         super().__init__(*args, **kwargs)
 
