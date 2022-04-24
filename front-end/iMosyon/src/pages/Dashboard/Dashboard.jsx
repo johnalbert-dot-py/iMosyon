@@ -1,5 +1,6 @@
 import { React, useEffect, useState } from 'react'
 import { read, utils } from 'xlsx/xlsx.mjs'
+import { useNavigate } from 'react-router-dom'
 import Cookies from 'js-cookie'
 
 import Sidebar from '@/components/dashboard/sidebar'
@@ -7,6 +8,7 @@ import MainContent from '@/components/dashboard/main-content'
 import Navbar from '@/components/dashboard/navbar'
 import UploadSection from '@/components/dashboard/home/UploadSection'
 import Loading from '@/components/dashboard/loading'
+import Error from '@/components/dashboard/error'
 
 import './index.css'
 import axios from 'axios'
@@ -16,10 +18,12 @@ export const Dashboard = (props) => {
     document.title = 'Dashboard | iMosyon'
   })
 
+  const navigate = useNavigate()
   const [uploadedFiles, setUploadedFiles] = useState(null)
   const [words, setWords] = useState([])
-  const [predictedWords, setPredictedWords] = useState([])
   const [isLoading, setIsLoading] = useState(false)
+  const [isError, setIsError] = useState(false)
+  const [errMessage, setErrMessage] = useState('')
 
   const processExcel = function (data) {
     const workbook = read(data, { type: 'binary' })
@@ -59,10 +63,16 @@ export const Dashboard = (props) => {
       })
         .then((response) => {
           setIsLoading(false)
-          setPredictedWords(response.data['results'])
+          if (response.data.success) {
+            navigate('prediction-result/' + response.data.user_predict_id, {
+              replace: true,
+            })
+          }
         })
         .catch((error) => {
-          console.log(error)
+          setIsLoading(false)
+          setIsError(true)
+          setErrMessage(error.response.data.message)
         })
     }
   }, [words])
@@ -83,6 +93,8 @@ export const Dashboard = (props) => {
         </Navbar>
         {!isLoading ? (
           <UploadSection setUploadFiles={setUpload}></UploadSection>
+        ) : isError ? (
+          <Error onClose={setIsError(false)}>{errMessage}</Error>
         ) : (
           <Loading></Loading>
         )}

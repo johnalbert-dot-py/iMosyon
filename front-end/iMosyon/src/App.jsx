@@ -6,6 +6,8 @@ import Home from '@/pages/Home/home'
 import SignUp from '@/pages/SignUp/sign-up'
 import Login from '@/pages/Login/login'
 import Dashboard from '@/pages/Dashboard/Dashboard'
+import PredictionResult from '@/pages/Dashboard/PredictionResult'
+
 import LoginRequired from '@/components/LoginRequired'
 
 const App = () => {
@@ -15,14 +17,25 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/register/" element={<SignUp />} />
         <Route path="/login/" element={<Login />} />
-        <Route
-          path="/user/dashboard"
-          element={
-            <LoginRequired>
-              <Dashboard />
-            </LoginRequired>
-          }
-        />
+        <Route path="/user/dashboard/">
+          <Route
+            path=""
+            element={
+              <LoginRequired>
+                <Dashboard />
+              </LoginRequired>
+            }
+          ></Route>
+          <Route
+            path="prediction-result/:id"
+            element={
+              <LoginRequired>
+                <PredictionResult />
+              </LoginRequired>
+            }
+          />
+        </Route>
+        {/* <Route element={<div>{(window.location.href = '/')}</div>} /> */}
       </Routes>
     </UserAuthProvider>
   )

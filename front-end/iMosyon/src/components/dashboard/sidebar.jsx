@@ -21,9 +21,9 @@ const HeadingBrand = styled.h1`
   -webkit-text-fill-color: transparent !important;
 `
 
-export const Sidebar = (props) => {
+export const Sidebar = ({ props }) => {
   return (
-    <div className="bg-secondary-dark hidden md:flex flex-col absolute h-screen justify-start items-center md:w-40 lg:w-96">
+    <div className="bg-secondary-dark hidden fixed md:flex flex-col h-screen justify-start items-center md:w-40 lg:w-96">
       <HeadingBrand className="text-gradient self-center pt-20 pb-10 text-5xl font-secondary font-bold">
         iMosyon
       </HeadingBrand>
