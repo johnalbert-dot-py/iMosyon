@@ -1,13 +1,14 @@
 import { React } from 'react'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useNavigate } from 'react-router-dom'
+
 import {
   faCloudArrowUp,
   faCog,
   faHouse,
   faUserHair,
 } from '@fortawesome/pro-solid-svg-icons'
-
 import imosyonBanner from '@/assets/iMosyon-banner.svg'
 
 const HeadingBrand = styled.h1`
@@ -22,6 +23,7 @@ const HeadingBrand = styled.h1`
 `
 
 export const Sidebar = ({ props }) => {
+  const navigate = useNavigate()
   return (
     <div className="bg-secondary-dark hidden fixed md:flex flex-col h-screen justify-start items-center md:w-40 lg:w-96">
       <HeadingBrand className="text-gradient self-center pt-20 pb-10 text-5xl font-secondary font-bold">
@@ -65,7 +67,10 @@ export const Sidebar = ({ props }) => {
         />
       </div>
       <div className="self-center pt-4 pb-8 w-3/5">
-        <button className="bg-primary-blue transition-all hover:bg-opacity-80 text-primary-white w-full p-4 flex flex-row gap-2 items-center rounded-lg justify-center drop-shadow-lg">
+        <button
+          onClick={() => navigate('/user/dashboard', { replace: true })}
+          className="bg-primary-blue transition-all hover:bg-opacity-80 text-primary-white w-full p-4 flex flex-row gap-2 items-center rounded-lg justify-center drop-shadow-lg"
+        >
           <FontAwesomeIcon icon={faCloudArrowUp} />
           Upload Now
         </button>
