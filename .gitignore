@@ -1,5 +1,6 @@
 back-end/venv/
 front-end/node_modules/
+back-end/build/
 
 *.pyc
 front-end/iMosyon/.env

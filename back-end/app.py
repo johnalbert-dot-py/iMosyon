@@ -1,18 +1,22 @@
 import uuid
-from flask import Flask
+from flask import Flask, send_from_directory
 from config import iMosyonConfig
 from extensions import jwt, cors, bcrypt
 from flask_migrate import Migrate
 from models import db
 from flask import make_response, jsonify
 from jsonschema import ValidationError
+import os
+import mimetypes
+
+mimetypes.add_type("application/javascript", ".js")
 
 
 # blueprints
 from routes.authentication import authentication
 from routes.predict import predictor
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="build/")
 
 app.config.from_object(iMosyonConfig)
 jwt.init_app(app)
@@ -21,12 +25,23 @@ db.init_app(app)
 bcrypt.init_app(app)
 migrate = Migrate(app, db)
 
+# REACT APP
+@app.route("/", defaults={"path": ""})
+@app.route("/<path:path>")
+def serve(path):
+    if path != "" and os.path.exists(app.static_folder + "/" + path):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, "index.html")
+
+
 @app.errorhandler(400)
 def bad_request(error):
     if isinstance(error.description, ValidationError):
         original_error = error.description
         return make_response(jsonify({"error": original_error.message}), 400)
     return error
+
 
 @app.cli.command("populate")
 def populate():
@@ -56,8 +71,18 @@ def populate():
     db.session.commit()
 
     words = [
-        {"word": "hello", "emotion": "happy", "accuracy": 0.9, "users_predicted_words_id": users_predicted_words.id},
-        {"word": "world", "emotion": "happy", "accuracy": 0.9, "users_predicted_words_id": users_predicted_words.id},
+        {
+            "word": "hello",
+            "emotion": "happy",
+            "accuracy": 0.9,
+            "users_predicted_words_id": users_predicted_words.id,
+        },
+        {
+            "word": "world",
+            "emotion": "happy",
+            "accuracy": 0.9,
+            "users_predicted_words_id": users_predicted_words.id,
+        },
     ]
     print(words)
 
@@ -72,6 +97,7 @@ def populate():
     except Exception as e:
         print(e)
 
+
 @app.cli.command("reset_db")
 def reset_db():
     db.drop_all()
@@ -83,5 +109,3 @@ if __name__ == "__main__":
     app.register_blueprint(authentication, bcrypt=bcrypt)
     app.register_blueprint(predictor)
     app.run(debug=True, host="0.0.0.0")
-
-
