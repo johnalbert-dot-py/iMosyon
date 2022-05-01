@@ -32,7 +32,6 @@ def userRegistration(request):
     if User.query.filter_by(username=username).first():
         return jsonify({"message": "Username already exists", "field": "username"}), 400
 
-
     # create user
     password = password_generator(password)
     user = User(username=username, password=password, name=name, email=email)
@@ -55,7 +54,7 @@ def userLogin(request):
             if remember:
                 expired_on = timedelta(hours=24 * 15)
             else:
-                expired_on = timedelta(seconds=40)
+                expired_on = timedelta(hours=5)
 
             access_token = create_access_token(
                 identity={"username": username, "id": user.id},
@@ -72,8 +71,11 @@ def userLogin(request):
             return response, 200
 
         else:
-            return jsonify(
-                {"message": "Please check your credentials.", "field": "password"}
-            ), 400
+            return (
+                jsonify(
+                    {"message": "Please check your credentials.", "field": "password"}
+                ),
+                400,
+            )
     else:
         return jsonify({"message": "Username is invalid.", "field": "username"}), 400

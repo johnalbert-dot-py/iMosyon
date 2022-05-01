@@ -1,7 +1,7 @@
-import { React } from 'react'
+import { React, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 
 import {
   faCloudArrowUp,
@@ -24,39 +24,78 @@ const HeadingBrand = styled.h1`
 
 export const Sidebar = ({ props }) => {
   const navigate = useNavigate()
+  const location = useLocation()
+  const [activePage, seActivePage] = useState('')
+
+  useEffect(() => {
+    if (
+      location.pathname == '/user/dashboard/' ||
+      location.pathname == '/user/dashboard'
+    ) {
+      seActivePage('home')
+    } else if (location.pathname.includes('/user/dashboard/profile')) {
+      seActivePage('profile')
+    } else if (location.pathname.includes('/user/dashboard/settings')) {
+      seActivePage('settings')
+    } else {
+      //
+    }
+    console.log(location.pathname)
+  }, [])
+
+  useEffect(() => {
+    console.log(activePage)
+  }, [activePage])
+
   return (
-    <div className="bg-secondary-dark hidden fixed md:flex flex-col h-screen justify-start items-center md:w-40 lg:w-96">
+    <div
+      className={
+        'bg-secondary-dark hidden fixed md:flex flex-col h-screen justify-start items-center md:w-40 lg:w-96'
+      }
+    >
       <HeadingBrand className="text-gradient self-center pt-20 pb-10 text-5xl font-secondary font-bold">
         iMosyon
       </HeadingBrand>
 
       <div className="flex flex-col gap-2 w-5/6 mt-6 mb-auto">
-        <a href="#">
-          <div className="ransition-all w-100 py-4 px-6 flex flex-row justify-start items-center gap-4 rounded-lg bg-primary-dark drop-shadow-xl">
+        <Link to="/user/dashboard/" replace>
+          <div
+            className={`transition-all w-100 py-4 px-6 flex flex-row justify-start items-center gap-4 rounded-lg ${
+              activePage == 'home'
+                ? ' bg-primary-dark drop-shadow-xl text-primary-white'
+                : ' text-primary-white text-opacity-50 hover:text-opacity-70 hover:bg-primary-dark hover:bg-opacity-70'
+            }`}
+          >
             <FontAwesomeIcon icon={faHouse} className="text-[#0EFFD4]" />
-            <span className="text-primary-white mt-[3px] font-primary font-bold tracking-[0.05em]">
+            <span className="mt-[3px] font-primary font-bold tracking-[0.05em]">
               Home
             </span>
           </div>
-        </a>
+        </Link>
 
-        <a href="#">
+        <Link to="#">
           <div className="transition-all w-100 py-4 px-6 flex flex-row justify-start items-center gap-4 rounded-lg text-primary-white text-opacity-50 hover:text-opacity-70 hover:bg-primary-dark hover:bg-opacity-70">
             <FontAwesomeIcon icon={faUserHair} className="text-[#43dd6f]" />
             <span className="mt-[2px] ml-1 font-primary font-bold tracking-[0.05em]">
               Profile
             </span>
           </div>
-        </a>
+        </Link>
 
-        <a href="#">
-          <div className="transition-all w-100 py-4 px-6 flex flex-row justify-start items-center gap-4 rounded-lg text-primary-white text-opacity-50 hover:text-opacity-70 hover:bg-primary-dark hover:bg-opacity-70">
+        <Link to="/user/dashboard/settings/">
+          <div
+            className={`transition-all w-100 py-4 px-6 flex flex-row justify-start items-center gap-4 rounded-lg ${
+              activePage == 'settings'
+                ? ' bg-primary-dark drop-shadow-xl text-primary-white'
+                : ' text-primary-white text-opacity-50 hover:text-opacity-70 hover:bg-primary-dark hover:bg-opacity-70'
+            }`}
+          >
             <FontAwesomeIcon icon={faCog} className="text-[#a525cf]" />
             <span className="mt-[2px] ml-[1px] font-primary font-bold tracking-[0.05em]">
               Settings
             </span>
           </div>
-        </a>
+        </Link>
       </div>
 
       <div className="self-center w-[75%] mb-5 ">

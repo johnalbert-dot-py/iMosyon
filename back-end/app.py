@@ -15,6 +15,7 @@ mimetypes.add_type("application/javascript", ".js")
 # blueprints
 from routes.authentication import authentication
 from routes.predict import predictor
+from routes.user import user_data
 
 app = Flask(__name__, static_folder="build/")
 
@@ -26,13 +27,13 @@ bcrypt.init_app(app)
 migrate = Migrate(app, db)
 
 # REACT APP
-@app.route("/", defaults={"path": ""})
-@app.route("/<path:path>")
-def serve(path):
-    if path != "" and os.path.exists(app.static_folder + "/" + path):
-        return send_from_directory(app.static_folder, path)
-    else:
-        return send_from_directory(app.static_folder, "index.html")
+# @app.route("/", defaults={"path": ""})
+# @app.route("/<path:path>")
+# def serve(path):
+#     if path != "" and os.path.exists(app.static_folder + "/" + path):
+#         return send_from_directory(app.static_folder, path)
+#     else:
+#         return send_from_directory(app.static_folder, "index.html")
 
 
 @app.errorhandler(400)
@@ -108,4 +109,5 @@ def reset_db():
 if __name__ == "__main__":
     app.register_blueprint(authentication, bcrypt=bcrypt)
     app.register_blueprint(predictor)
+    app.register_blueprint(user_data)
     app.run(debug=True, host="0.0.0.0")

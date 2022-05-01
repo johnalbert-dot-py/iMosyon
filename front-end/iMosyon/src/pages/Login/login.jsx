@@ -1,6 +1,7 @@
 import { React, useEffect, useState, useContext } from 'react'
 import { UserAuthContext } from '../../context/UserAuth'
 import { ToastContainer, toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 import AuthPage from '@/components/auth-user/AuthPage'
@@ -10,13 +11,14 @@ import { faCircleNotch } from '@fortawesome/pro-solid-svg-icons'
 import 'react-toastify/dist/ReactToastify.css'
 
 export const Login = () => {
-  const [, setUserAuth] = useContext(UserAuthContext)
+  const [isUserAuth, setUserAuth] = useContext(UserAuthContext)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [remember, setRemember] = useState(false)
 
   const [usernameError, setUsernameError] = useState('')
   const [passwordError, setPasswordError] = useState('')
+  const navigate = useNavigate()
 
   const [sending, setSending] = useState(false)
   const notify = ({ message, error }) => {
@@ -34,7 +36,13 @@ export const Login = () => {
   useEffect(() => {
     document.title = 'Login | iMosyon'
     document.getElementsByTagName('body')[0].classList.add('main')
-  })
+
+    if (isUserAuth.logged_in) {
+      navigate('/user/dashboard/', { replace: true })
+    } else {
+      console.log('NOT LOGGED IN')
+    }
+  }, [])
   useEffect(() => {
     usernameError ? setUsernameError('') : null
     passwordError ? setPasswordError('') : null

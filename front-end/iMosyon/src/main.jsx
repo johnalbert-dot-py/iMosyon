@@ -6,21 +6,6 @@ import { BrowserRouter } from 'react-router-dom'
 
 import './root.scss'
 
-// const imosyon_theme = {
-//   dark: {
-//     primary: "#2F3134",
-//     secondary: "#191A1B",
-//   },
-//   white: {
-//     primary: "#Fdfdfd",
-//     secondary: "#fff"
-//   },
-//   fonts: {
-//     heading: "Poppins, sans-serif",
-//     main: "Noto Sans, sans-serif"
-//   },
-// }
-
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>

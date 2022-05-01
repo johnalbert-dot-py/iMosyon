@@ -86,11 +86,7 @@ export const Dashboard = (props) => {
     <div className="p-0 overflow-x-hidden">
       <Sidebar />
       <MainContent>
-        <Navbar>
-          <button className="rounded-md text-primary-white bg-primary-blue px-6 py-3 hover:bg-opacity-80">
-            Log Out
-          </button>
-        </Navbar>
+        <Navbar></Navbar>
         {!isLoading ? (
           <UploadSection setUploadFiles={setUpload}></UploadSection>
         ) : isError ? (

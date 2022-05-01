@@ -8,7 +8,7 @@ def predict(words, user):
 
     response = {"success": False}
 
-    user = User.query.filter_by(id=user["id"], username=user["username"]).first()
+    user = User.query.filter_by(id=user["id"]).first()
     if not user:
         response["message"] = "User not found"
         return response
@@ -62,7 +62,7 @@ def get_prediction_result(prediction_id, user):
 
     response = {"success": False}
 
-    user = User.query.filter_by(id=user["id"], username=user["username"]).first()
+    user = User.query.filter_by(id=user["id"]).first()
     if not user:
         response["message"] = "User not found"
         return response

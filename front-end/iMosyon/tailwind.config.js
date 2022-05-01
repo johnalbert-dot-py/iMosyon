@@ -3,6 +3,7 @@ module.exports = {
   variants: {
     display: ['responsive', 'hover', 'focus', 'group-hover'],
     textColor: ['responsive', 'hover', 'focus', 'group-hover'],
+    backgroundColor: ['responsive', 'hover', 'focus', 'active'],
   },
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
@@ -18,7 +19,7 @@ module.exports = {
       danger: '#ED6161',
     },
     fontFamily: {
-      sans: ['san-serif'],
+      sans: ["'IBM Plex Sans'"],
       serif: ['serif'],
       primary: ["'Nunito'"],
       secondary: ["'Poppins'"],

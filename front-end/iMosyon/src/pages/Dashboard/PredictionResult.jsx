@@ -1,12 +1,12 @@
 import { React, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
-import Cookies from 'js-cookie'
+// import Cookies from 'js-cookie'
 
 import Sidebar from '@/components/dashboard/sidebar'
 import MainContent from '@/components/dashboard/main-content'
 import Navbar from '@/components/dashboard/navbar'
-import Loading from '@/components/dashboard/loading'
+// import Loading from '@/components/dashboard/loading'
 import ItemResult from '@/components/dashboard/home/ItemResult'
 
 export const PredictionResult = () => {
@@ -37,11 +37,7 @@ export const PredictionResult = () => {
     <div className="p-0 overflow-x-hidden">
       <Sidebar />
       <MainContent>
-        <Navbar>
-          <button className="rounded-md text-primary-white bg-primary-blue px-6 py-3 hover:bg-opacity-80">
-            Log Out
-          </button>
-        </Navbar>
+        <Navbar></Navbar>
         <h2 className="text-2xl mb-1 text-primary-white font-primary font-bold">
           Prediction Result
         </h2>
