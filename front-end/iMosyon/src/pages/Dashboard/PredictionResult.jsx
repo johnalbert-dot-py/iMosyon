@@ -28,6 +28,15 @@ export const PredictionResult = () => {
   }
   const [predictionData, setPredictionData] = useState(null)
 
+  const parseDate = (date) => {
+    return new Date(date).toLocaleString('en-US', {
+      month: 'short',
+      day: '2-digit',
+      year: 'numeric',
+      timeZone: 'Asia/Manila',
+    })
+  }
+
   useEffect(() => {
     getPredictionResult()
     console.log('initiated')
@@ -51,7 +60,9 @@ export const PredictionResult = () => {
                 </div>
                 <div className="text-primary-white font-primary text-xl flex flex-row justify-evenly gap-2 items-baseline">
                   <p className="h-7">Date Created:</p>
-                  <p className="text-sm">{predictionData.date_created}</p>
+                  <p className="text-sm">
+                    {parseDate(predictionData.date_created)}
+                  </p>
                 </div>
               </div>
               <div className="p-9 bg-primary-dark rounded-md flex flex-col justify-start items-center grow border border-solid border-[#54595E] border-l-[yellow] border-l-4">

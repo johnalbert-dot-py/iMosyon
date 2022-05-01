@@ -53,7 +53,7 @@ export const Settings = (props) => {
         <h2 className="text-4xl mb-1 text-primary-white font-sans font-semibold">
           Account Settings
         </h2>
-        <p className="text-primary-white font-primary font-semibold">
+        <p className="text-placeholder font-primary font-semibold">
           Change your account settings here.
         </p>
 

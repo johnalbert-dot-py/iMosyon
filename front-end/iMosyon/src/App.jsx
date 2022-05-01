@@ -8,6 +8,7 @@ import Login from '@/pages/Login/login'
 import Dashboard from '@/pages/Dashboard/Dashboard'
 import PredictionResult from '@/pages/Dashboard/PredictionResult'
 import Setting from '@/pages/Dashboard/Settings'
+import Profile from '@/pages/Dashboard/Profile'
 
 import LoginRequired from '@/components/LoginRequired'
 
@@ -43,6 +44,15 @@ const App = () => {
             element={
               <LoginRequired>
                 <Setting />
+              </LoginRequired>
+            }
+          />
+          <Route
+            exact
+            path="profile/"
+            element={
+              <LoginRequired>
+                <Profile />
               </LoginRequired>
             }
           />

@@ -17,6 +17,7 @@ module.exports = {
       'secondary-gray': '#A9ABAC',
       'primary-blue': '#2A84FF',
       danger: '#ED6161',
+      placeholder: '#B0B1B2',
     },
     fontFamily: {
       sans: ["'IBM Plex Sans'"],

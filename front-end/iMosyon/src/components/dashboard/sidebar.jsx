@@ -73,8 +73,14 @@ export const Sidebar = ({ props }) => {
           </div>
         </Link>
 
-        <Link to="#">
-          <div className="transition-all w-100 py-4 px-6 flex flex-row justify-start items-center gap-4 rounded-lg text-primary-white text-opacity-50 hover:text-opacity-70 hover:bg-primary-dark hover:bg-opacity-70">
+        <Link to="/user/dashboard/profile">
+          <div
+            className={`transition-all w-100 py-4 px-6 flex flex-row justify-start items-center gap-4 rounded-lg ${
+              activePage == 'profile'
+                ? ' bg-primary-dark drop-shadow-xl text-primary-white'
+                : ' text-primary-white text-opacity-50 hover:text-opacity-70 hover:bg-primary-dark hover:bg-opacity-70'
+            }`}
+          >
             <FontAwesomeIcon icon={faUserHair} className="text-[#43dd6f]" />
             <span className="mt-[2px] ml-1 font-primary font-bold tracking-[0.05em]">
               Profile

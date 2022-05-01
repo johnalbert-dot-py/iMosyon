@@ -1,5 +1,5 @@
 import bcrypt
-from models import User, db
+from models import User, db, UsersPredictedWords
 from flask import jsonify
 from flask_bcrypt import Bcrypt
 
@@ -94,3 +94,57 @@ def update_password(request, user):
     UserData.password = password_generator(new_password)
     db.session.commit()
     return jsonify({"success": True, "message": "Password updated successfully"}), 200
+
+
+def get_users_predictions(request, user):
+    UserData = User.query.filter_by(id=user["id"]).first()
+    db.session.add(UserData)
+
+    # get users predicted words by id
+    users_predicted_words = UsersPredictedWords.query.filter_by(
+        user_id=UserData.id
+    ).all()
+
+    if not users_predicted_words:
+        return (
+            jsonify({"words": [], "success": True}),
+            200,
+        )
+
+    words = []
+    for word in users_predicted_words:
+        words.append(
+            {
+                "id": word.id,
+                "prediction_id": word.predict_id,
+                "count": len(word.predicted_words),
+                "created_at": word.created_at.strftime("%m-%d-%Y"),
+            }
+        )
+
+    return jsonify({"words": words, "success": True}), 200
+
+
+def delete_users_prediction(request, user):
+    prediction_id = request.json.get("prediction_id", None)
+
+    if not prediction_id:
+        return (
+            jsonify({"message": "Prediction id is required", "success": False}),
+            400,
+        )
+
+    UserData = UsersPredictedWords.query.filter_by(
+        user_id=user["id"], predict_id=prediction_id
+    ).first()
+    db.session.add(UserData)
+
+    if not UserData:
+        return (
+            jsonify({"message": "Prediction not found", "success": False}),
+            404,
+        )
+
+    db.session.delete(UserData)
+    db.session.commit()
+    return jsonify({"success": True, "message": "Prediction deleted successfully"}), 200
