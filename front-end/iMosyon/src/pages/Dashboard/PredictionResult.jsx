@@ -1,7 +1,9 @@
 import { React, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
-// import Cookies from 'js-cookie'
+import { CSVLink } from 'react-csv'
+import Cookies from 'js-cookie'
+import { toast, ToastContainer } from 'react-toastify'
 
 import Sidebar from '@/components/dashboard/sidebar'
 import MainContent from '@/components/dashboard/main-content'
@@ -11,6 +13,15 @@ import ItemResult from '@/components/dashboard/home/ItemResult'
 
 export const PredictionResult = () => {
   const id = useParams().id
+  const notify = ({ message, error }) => {
+    if (error) {
+      toast.error(message)
+    } else {
+      toast.success(message, {})
+    }
+  }
+  const [predictionData, setPredictionData] = useState(null)
+
   const getPredictionResult = () => {
     axios({
       method: 'get',
@@ -26,7 +37,31 @@ export const PredictionResult = () => {
         console.log(error.response.data)
       })
   }
-  const [predictionData, setPredictionData] = useState(null)
+
+  const deleteWord = (delete_id) => {
+    axios({
+      url: '/api/user/delete-word',
+      method: 'delete',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': Cookies.get('csrf_access_token'),
+      },
+      data: {
+        id: delete_id,
+      },
+    })
+      .then((response) => {
+        notify({ message: response.data.message, error: false })
+        getPredictionResult()
+      })
+      .catch((error) => {
+        if (error.response.data.message) {
+          notify({ message: error.response.message, error: true })
+        } else {
+          notify({ message: 'Something went wrong.', error: true })
+        }
+      })
+  }
 
   const parseDate = (date) => {
     return new Date(date).toLocaleString('en-US', {
@@ -42,11 +77,27 @@ export const PredictionResult = () => {
     console.log('initiated')
   }, [])
 
+  useEffect(() => {
+    console.log(predictionData)
+  }, [predictionData])
+
   return (
     <div className="p-0 overflow-x-hidden">
       <Sidebar />
       <MainContent>
         <Navbar></Navbar>
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
         <h2 className="text-2xl mb-1 text-primary-white font-primary font-bold">
           Prediction Result
         </h2>
@@ -108,7 +159,7 @@ export const PredictionResult = () => {
                       key={index}
                       phrase={item.word}
                       predicted_emotion={item.emotion}
-                      accuracy={item.accuracy}
+                      deleteWord={() => deleteWord(item.id)}
                     />
                   )
                 })}
@@ -124,9 +175,18 @@ export const PredictionResult = () => {
                         {predictionData.total_words} results
                       </div>
                       <div>
-                        <button className="bg-secondary-dark hover:bg-primary-dark px-8 py-2 rounded-sm border-solid border border-[#404449]">
-                          Export to Excel
-                        </button>
+                        <CSVLink
+                          filename={`iMosyon-Result-${predictionData.id}`}
+                          data={[
+                            ['Sentence/Phrase', 'Predicted Emotion'],
+                            ...predictionData.predicted_words.map((word) => {
+                              return [word.word, word.emotion]
+                            }),
+                          ]}
+                          className="bg-secondary-dark hover:bg-primary-dark px-8 py-2 rounded-sm border-solid border border-[#404449]"
+                        >
+                          Export to File
+                        </CSVLink>
                       </div>
                     </div>
                   </td>

@@ -68,7 +68,7 @@ export const UploadSection = ({ setUploadFiles }) => {
     isDragReject,
   } = useDropzone({
     accept:
-      '.csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      '.csv, text/csv, application/vnd.ms-excel, application/csv, text/x-csv, application/x-csv, text/comma-separated-values, text/x-comma-separated-values, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
     onDrop: onDrop,
   })
 

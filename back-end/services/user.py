@@ -1,5 +1,5 @@
 import bcrypt
-from models import User, db, UsersPredictedWords
+from models import User, db, UsersPredictedWords, PredictedWord
 from flask import jsonify
 from flask_bcrypt import Bcrypt
 
@@ -148,3 +148,37 @@ def delete_users_prediction(request, user):
     db.session.delete(UserData)
     db.session.commit()
     return jsonify({"success": True, "message": "Prediction deleted successfully"}), 200
+
+
+def delete_users_prediction_word(request, user):
+    id = request.json.get("id", None)
+
+    if not id:
+        return (
+            jsonify({"message": "ID is required", "success": False}),
+            400,
+        )
+
+    word = PredictedWord.query.filter_by(id=id).first()
+    all_users_word_id = []
+    db.session.add(word)
+    UserData = UsersPredictedWords.query.filter_by(user_id=user["id"]).all()
+    for user_word in UserData:
+        for words in user_word.predicted_words:
+            all_users_word_id.append(words.id)
+
+    if not UserData:
+        return (
+            jsonify({"message": "User not found", "success": False}),
+            404,
+        )
+
+    if word.id not in all_users_word_id:
+        return (
+            jsonify({"message": "Word not found", "success": False}),
+            404,
+        )
+
+    db.session.delete(word)
+    db.session.commit()
+    return jsonify({"success": True, "message": "Word deleted successfully"}), 200

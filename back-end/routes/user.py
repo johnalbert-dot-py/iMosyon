@@ -3,7 +3,11 @@ from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from flask_expects_json import expects_json
 import jwt
-from services.user import update_users_data, update_password
+from services.user import (
+    update_users_data,
+    update_password,
+    delete_users_prediction_word,
+)
 from services.user import get_users_predictions as get_users_predictions_service
 from services.user import delete_users_prediction as delete_users_prediction_service
 from models import User
@@ -77,11 +81,22 @@ def get_users_predictions():
     except Exception as e:
         return (jsonify({"message": "Something went wrong", "reason": str(e)}), 500)
 
+
 @user_data.route("/delete-prediction", methods=["DELETE"])
 @jwt_required()
 def delete_users_prediciton():
     try:
         user = get_jwt_identity()
         return delete_users_prediction_service(request, user)
+    except Exception as e:
+        return (jsonify({"message": "Something went wrong", "reason": str(e)}), 500)
+
+
+@user_data.route("/delete-word", methods=["DELETE"])
+@jwt_required()
+def delete_users_word():
+    try:
+        user = get_jwt_identity()
+        return delete_users_prediction_word(request, user)
     except Exception as e:
         return (jsonify({"message": "Something went wrong", "reason": str(e)}), 500)

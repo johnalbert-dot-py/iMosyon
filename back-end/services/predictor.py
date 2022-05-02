@@ -19,11 +19,10 @@ def predict(words, user):
 
     for word in words:
         p = predictor.EmotionPrediction(word)
-        result: Union[str, float] = p.analyze_sentence()
+        result: p.analyze_sentence()
         pw = PredictedWord(
             word=word,
             emotion=result[0],
-            accuracy=result[1],
             users_predicted_words_id=users_predicted_words.id,
         )
         db.session.add(pw)
@@ -87,7 +86,7 @@ def get_prediction_result(prediction_id, user):
             {
                 "word": predicted_word.word,
                 "emotion": predicted_word.emotion,
-                "accuracy": predicted_word.accuracy,
+                "id": predicted_word.id,
             }
         )
 
@@ -98,31 +97,42 @@ def get_prediction_result(prediction_id, user):
     emotions_in_user.update(all_emotions_in_user)
 
     # most_predicted_emotion
-    most_predicted_emotion = ""
-    most_predicted_count = 0
+    emotions_and_count = []
     for emotion in emotions_in_user:
-        count = all_emotions_in_user.count(emotion)
-        if count > most_predicted_count:
-            most_predicted_emotion = emotion
-            most_predicted_count = count
+        count = 0
+        for predicted_word in prediction_words:
+            if predicted_word.emotion == emotion:
+                count += 1
+        emotions_and_count.append({"emotion": emotion, "count": count})
+    emotions_and_count.sort(key=lambda x: x["count"], reverse=True)
+
+    lowests = ""
+    highest = ""
+
+    current_low = 0
+    current_high = 0
+
+    for emotion in emotions_and_count:
+        if current_low == 0:
+            current_low = emotion["count"]
+            lowests = emotion["emotion"]
+        elif current_low > emotion["count"]:
+            current_low = emotion["count"]
+            lowests = emotion["emotion"]
+
+        if current_high == 0:
+            current_high = emotion["count"]
+            highest = emotion["emotion"]
+        elif current_high < emotion["count"]:
+            current_high = emotion["count"]
+            highest = emotion["emotion"]
 
     response["most_predicted_emotion"] = {
-        "emotion": most_predicted_emotion,
-        "count": most_predicted_count,
+        "emotion": highest,
     }
 
-    # least_predicted_emotion
-    least_predicted_emotion = ""
-    least_predicted_count = 1
-    for emotion in emotions_in_user:
-        count = all_emotions_in_user.count(emotion)
-        if count <= least_predicted_count:
-            least_predicted_emotion = emotion
-            least_predicted_count = count
-
     response["least_predicted_emotion"] = {
-        "emotion": least_predicted_emotion,
-        "count": least_predicted_count,
+        "emotion": lowests,
     }
 
     response["success"] = True

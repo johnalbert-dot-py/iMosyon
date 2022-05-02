@@ -79,7 +79,12 @@ const PredictedEmotionAccuracy = ({ accuracy }) => {
   )
 }
 
-export const ItemResult = ({ phrase, predicted_emotion, accuracy, props }) => {
+export const ItemResult = ({
+  phrase,
+  predicted_emotion,
+  deleteWord,
+  props,
+}) => {
   return (
     <tr
       {...props}
@@ -89,10 +94,11 @@ export const ItemResult = ({ phrase, predicted_emotion, accuracy, props }) => {
         {phrase}
       </td>
       <PredictedEmotionResult predicted_emotion={predicted_emotion} />
-      <PredictedEmotionAccuracy accuracy={accuracy} />
+      <PredictedEmotionAccuracy accuracy={50.05} />
       <td className="text-primary-white font-primary ">
         <a
           href="#"
+          onClick={deleteWord}
           className="group-hover:text-danger group-hover:block hidden"
         >
           <FontAwesomeIcon

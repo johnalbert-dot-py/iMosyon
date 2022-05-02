@@ -32,15 +32,24 @@ export const Dashboard = (props) => {
     setWords(excelRows.split('\n'))
   }
 
+  const processCSV = function (data) {
+    const csvRows = data.split('\n')
+    setWords(csvRows)
+  }
+
   useEffect(() => {
     if (uploadedFiles) {
       if (typeof FileReader !== 'undefined') {
         const reader = new FileReader()
-        if (reader.readAsBinaryString) {
-          reader.onload = () => {
-            processExcel(reader.result)
+        // get file extension
+        const fileExtension = uploadedFiles.name.split('.').pop()
+        if (fileExtension === 'xlsx' || fileExtension === 'csv') {
+          if (reader.readAsBinaryString) {
+            reader.onload = () => {
+              processExcel(reader.result)
+            }
+            reader.readAsBinaryString(uploadedFiles)
           }
-          reader.readAsBinaryString(uploadedFiles)
         }
       }
     }
