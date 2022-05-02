@@ -1,3 +1,4 @@
+from email.policy import default
 from flask_sqlalchemy import SQLAlchemy
 import string, random
 
@@ -43,6 +44,7 @@ class PredictedWord(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     word = db.Column(db.Text, nullable=False)
     emotion = db.Column(db.String(120), nullable=False)
+    accuracy = db.Column(db.Float, nullable=False, default=0.0)
     users_predicted_words_id = db.Column(
         db.Integer,
         db.ForeignKey("users_predicted_words.id", ondelete="CASCADE"),

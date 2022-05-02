@@ -4,7 +4,7 @@ from random import randint
 from models import User, PredictedWord, UsersPredictedWords, db
 
 
-def predict(words, user):
+def predict(words, user, model, vectorizer):
 
     response = {"success": False}
 
@@ -18,11 +18,14 @@ def predict(words, user):
     db.session.commit()
 
     for word in words:
-        p = predictor.EmotionPrediction(word)
-        result: p.analyze_sentence()
+        p = predictor.EmotionPrediction(
+            sentence=word, model=model, vectorizer=vectorizer
+        )
+        result = p.analyze_sentence()
         pw = PredictedWord(
             word=word,
             emotion=result[0],
+            accuracy=result[1],
             users_predicted_words_id=users_predicted_words.id,
         )
         db.session.add(pw)
@@ -86,6 +89,7 @@ def get_prediction_result(prediction_id, user):
             {
                 "word": predicted_word.word,
                 "emotion": predicted_word.emotion,
+                "accuracy": predicted_word.accuracy,
                 "id": predicted_word.id,
             }
         )
