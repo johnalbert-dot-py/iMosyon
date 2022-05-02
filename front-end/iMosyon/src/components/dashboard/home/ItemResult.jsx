@@ -20,21 +20,32 @@ const PredictedEmotionResult = ({ predicted_emotion }) => {
       bgColor = '#FA7E7E'
       break
 
-    case 'ANTICIPATION':
+    case 'ANNOYED':
       bgColor = '#739AFF'
-      break
-
-    case 'TRUST':
-      bgColor = '#58965A'
-      break
-
-    case 'SURPRISE':
-      bgColor = '#CA73FF'
       break
 
     case 'DISGUST':
       bgColor = '#E96363'
       break
+
+    case 'FEAR':
+      bgColor = '#58965A'
+      break
+
+    case 'OUTRAGED':
+      bgColor = '#CA73FF'
+      break
+
+    case 'STRONG':
+      bgColor = '#B5B760'
+      break
+
+    case 'UPSET':
+      bgColor = '#60B763'
+      break
+
+    case 'OTHERS':
+      bgColor = '#E3EDF6'
   }
 
   let EmotionResult = styled.span`
