@@ -4,6 +4,8 @@ import axios from 'axios'
 import { CSVLink } from 'react-csv'
 import Cookies from 'js-cookie'
 import { toast, ToastContainer } from 'react-toastify'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/pro-solid-svg-icons'
 
 import Sidebar from '@/components/dashboard/sidebar'
 import MainContent from '@/components/dashboard/main-content'
@@ -118,7 +120,7 @@ export const PredictionResult = () => {
               </div>
               <div className="p-9 bg-primary-dark rounded-md flex flex-col justify-start items-center grow border border-solid border-[#54595E] border-l-[yellow] border-l-4">
                 <div className="text-primary-white font-primary text-xl flex flex-col gap-2 align-middle justify-center items-center">
-                  <h1 className="text-[#FFD873]">Total Words</h1>
+                  <h1 className="text-[#FFD873]">Total Sentences</h1>
                   <p>{predictionData.total_words}</p>
                 </div>
               </div>
@@ -195,7 +197,17 @@ export const PredictionResult = () => {
             </table>
           </>
         ) : (
-          <></>
+          <>
+            <div className="text-primary-white px-5 py-10 text-center">
+              <div>
+                <FontAwesomeIcon icon={faSpinner} className="fa-spin text-xl" />
+                <br />
+                <span className="text-placeholder font-sans">
+                  Fetching Data
+                </span>
+              </div>
+            </div>
+          </>
         )}
       </MainContent>
     </div>

@@ -40,8 +40,13 @@ export const Profile = (props) => {
       method: 'GET',
       withCredentials: true,
     }).then((response) => {
-      setUsersPredictedWords(response.data.words)
-      console.log(response.data)
+      if (response.data.words.length > 0) {
+        setUsersPredictedWords(response.data.words)
+      } else {
+        setUsersPredictedWords(['empty'])
+      }
+      console.log('bruh', usersPredictedWords)
+      console.log(response.data.words)
     })
   }
 
@@ -99,49 +104,57 @@ export const Profile = (props) => {
           Here you can see all the prediction results that you’ve got.
         </p>
         {usersPredictedWords.length > 0 ? (
-          usersPredictedWords.map((word, index) => {
-            console.log(word)
-            return (
-              <>
-                <div
-                  key={index}
-                  className="bg-secondary-dark w-full h-auto rounded-md mt-3 px-8 py-6"
-                >
-                  <div className="flex flex-row justify-between items-center">
-                    {/* left */}
-                    <div className="flex flex-col items-start text-primary-white">
-                      <h3 className="text-xl">ID: {word.prediction_id}</h3>
-                      <p className="text-md m-0 p-0">{word.count} Words</p>
-                      <p className="text-md m-0 p-0">
-                        {parseDate(word.created_at)}
-                      </p>
-                    </div>
+          <>
+            {usersPredictedWords[0] !== 'empty' ? (
+              usersPredictedWords.map((word, index) => {
+                console.log(word)
+                return (
+                  <>
+                    <div
+                      key={index}
+                      className="bg-secondary-dark w-full h-auto rounded-md mt-3 px-8 py-6"
+                    >
+                      <div className="flex flex-row justify-between items-center">
+                        {/* left */}
+                        <div className="flex flex-col items-start text-primary-white">
+                          <h3 className="text-xl">ID: {word.prediction_id}</h3>
+                          <p className="text-md m-0 p-0">{word.count} Words</p>
+                          <p className="text-md m-0 p-0">
+                            {parseDate(word.created_at)}
+                          </p>
+                        </div>
 
-                    {/* right */}
+                        {/* right */}
 
-                    <div className="flex flex-row items-center align-center gap-2 text-primary-white">
-                      <button
-                        className="bg-primary-blue px-9 py-2 rounded-md text-center hover:bg-opacity-50"
-                        onClick={() => {
-                          navigate(
-                            `/user/dashboard/prediction-result/${word.prediction_id}`,
-                          )
-                        }}
-                      >
-                        View
-                      </button>
-                      <button
-                        className="bg-danger px-9 py-2 rounded-md text-center hover:bg-opacity-50"
-                        onClick={() => deletePrediction(word.prediction_id)}
-                      >
-                        Delete
-                      </button>
+                        <div className="flex flex-row items-center align-center gap-2 text-primary-white">
+                          <button
+                            className="bg-primary-blue px-9 py-2 rounded-md text-center hover:bg-opacity-50"
+                            onClick={() => {
+                              navigate(
+                                `/user/dashboard/prediction-result/${word.prediction_id}`,
+                              )
+                            }}
+                          >
+                            View
+                          </button>
+                          <button
+                            className="bg-danger px-9 py-2 rounded-md text-center hover:bg-opacity-50"
+                            onClick={() => deletePrediction(word.prediction_id)}
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </>
-            )
-          })
+                  </>
+                )
+              })
+            ) : (
+              <div className="text-center w-full py-9 text-placeholder text-3xl font-sans">
+                <h2>You don't have any saved progress yet.</h2>
+              </div>
+            )}
+          </>
         ) : (
           <div className="text-primary-white px-5 py-10 text-center">
             <div>

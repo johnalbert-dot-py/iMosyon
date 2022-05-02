@@ -45,6 +45,7 @@ const PredictedEmotionResult = ({ predicted_emotion }) => {
       break
 
     case 'OTHERS':
+      color = '#1f1f1f'
       bgColor = '#E3EDF6'
   }
 

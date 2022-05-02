@@ -72,7 +72,7 @@ export const AccountInfo = (props) => {
       user.username === '...'
     ) {
       axios({
-        url: '/api/user',
+        url: '/api/user/',
         method: 'GET',
         withCredentials: true,
       })
