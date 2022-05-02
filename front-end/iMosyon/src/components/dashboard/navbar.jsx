@@ -26,7 +26,6 @@ export const Navbar = ({ children }) => {
   return (
     <DasboardNav>
       {children}
-      Logged In? {isUserAuth.logged_in ? 'Yes' : 'No'}
       <button
         className="rounded-md text-primary-white bg-primary-blue px-6 py-3 hover:bg-opacity-80"
         onClick={logout}
