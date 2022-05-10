@@ -6,7 +6,7 @@ export const Footer = () => {
   return (
     <div className="footer">
       <h2>iMosyon</h2>
-      <p>iMosyon is a emotion recognition system built with python.</p>
+      <p>iMosyon is an emotion recognition system built with python.</p>
     </div>
   )
 }

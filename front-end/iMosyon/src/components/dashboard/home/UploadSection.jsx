@@ -54,7 +54,7 @@ function formatBytes(bytes, decimals = 2) {
   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i]
 }
 
-export const UploadSection = ({ setUploadFiles }) => {
+export const UploadSection = ({ setUploadFiles, setPage }) => {
   const [uploadedFiles, setUploadFilesLocal] = useState([])
 
   const onDrop = useCallback((acceptedFiles) => {
@@ -161,7 +161,14 @@ export const UploadSection = ({ setUploadFiles }) => {
             </button>
           </>
         ) : (
-          ''
+          <button
+            onClick={() => {
+              setPage('input')
+            }}
+            className="px-8 py-5 bg-primary-blue mt-4 text-primary-white rounded-md drop-shadow-lg border-2 border-primary-dark-light border-solid hover:bg-opacity-50 float-right mr-2"
+          >
+            Use Input Field
+          </button>
         )}
       </div>
     </>

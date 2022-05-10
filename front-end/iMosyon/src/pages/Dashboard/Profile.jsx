@@ -151,6 +151,7 @@ export const Profile = (props) => {
               })
             ) : (
               <div className="text-center w-full py-9 text-placeholder text-3xl font-sans">
+                {/* eslint-disable-next-line react/no-unescaped-entities */}
                 <h2>You don't have any saved progress yet.</h2>
               </div>
             )}

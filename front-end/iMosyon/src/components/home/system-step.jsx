@@ -13,8 +13,8 @@ export const SystemStep = () => {
           <img src={step1} alt="step1" />
         </div>
         <div className="step-content">
-          User will upload an csv file that contains a columns of sentences or
-          just words.
+          User uploads a spreadsheet file containing rows of sentences, phrases
+          or words.
         </div>
       </div>
 
@@ -23,7 +23,7 @@ export const SystemStep = () => {
           <img src={step2} alt="step1" />
         </div>
         <div className="step-content">
-          Our system will process the word using our trained model and return
+          Our system will process the input using our trained model and return
           the result back to user.
         </div>
       </div>

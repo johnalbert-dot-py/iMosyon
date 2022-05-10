@@ -124,20 +124,6 @@ export const PredictionResult = () => {
                   <p>{predictionData.total_words}</p>
                 </div>
               </div>
-              <div className="p-9 bg-primary-dark rounded-md flex flex-col justify-center items-center grow border border-solid border-[#54595E] border-l-[#38ff3d] border-l-4">
-                <div className="text-primary-white font-primary text-xl flex flex-col gap-2 align-middle justify-center items-center">
-                  <h1 className=" text-[#38ff3d]">Most Predicted Emotion</h1>
-                  <p className="">
-                    {predictionData.most_predicted_emotion.emotion}
-                  </p>
-                </div>
-              </div>
-              <div className="p-9 bg-primary-dark rounded-md flex flex-col justify-center items-center grow border border-solid border-[#54595E] border-l-[#FA7E7E] border-l-4">
-                <div className="text-primary-white font-primary text-xl flex flex-col gap-2 align-middle justify-center items-center">
-                  <h1 className="text-[#FA7E7E]">Least Predicted Emotion</h1>
-                  <p>{predictionData.least_predicted_emotion.emotion}</p>
-                </div>
-              </div>
             </div>
             <table className="table-auto bg-secondary-dark p-4 h-auto lg:w-full rounded-xl drop-shadow-xl">
               <thead className="bg-[#282A2C]">
@@ -145,12 +131,12 @@ export const PredictionResult = () => {
                   <th className="text-[#54595E] font-primary font-bold uppercase text-[12px] py-4 pr-4 pl-8 text-left rounded-tl-xl">
                     Sentence/Phrase
                   </th>
-                  <th className="text-[#54595E] font-primary font-bold uppercase text-[12px] py-4 pr-4 pl-8 text-left">
+                  <th className="text-[#54595E] font-primary font-bold uppercase text-[12px] pl-8 text-left">
                     Predicted Emotion
                   </th>
-                  <th className="text-[#54595E] font-primary font-bold uppercase text-[12px] py-4 pr-4 text-left">
+                  {/* <th className="text-[#54595E] font-primary font-bold uppercase text-[12px] py-4 pr-4 text-left">
                     Accuracy %
-                  </th>
+                  </th> */}
                   <th className="text-[#54595E] font-primary font-bold uppercase text-[12px] py-4 pr-10 text-left rounded-tr-xl"></th>
                 </tr>
               </thead>
@@ -161,6 +147,7 @@ export const PredictionResult = () => {
                       key={index}
                       phrase={item.word}
                       predicted_emotion={item.emotion}
+                      accuracy={item.accuracy}
                       deleteWord={() => deleteWord(item.id)}
                     />
                   )
@@ -182,7 +169,13 @@ export const PredictionResult = () => {
                           data={[
                             ['Sentence/Phrase', 'Predicted Emotion'],
                             ...predictionData.predicted_words.map((word) => {
-                              return [word.word, word.emotion]
+                              let accuracies = word.accuracy.split(', ')
+                              return [
+                                word.word,
+                                word.emotion.split(', ').map((e, index) => {
+                                  return e + ' - ' + accuracies[index] + ' '
+                                }),
+                              ]
                             }),
                           ]}
                           className="bg-secondary-dark hover:bg-primary-dark px-8 py-2 rounded-sm border-solid border border-[#404449]"

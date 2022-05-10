@@ -3,9 +3,10 @@ import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/pro-solid-svg-icons'
 
-const PredictedEmotionResult = ({ predicted_emotion }) => {
+const PredictedEmotionResult = ({ predicted_emotion, accuracy }) => {
   let color = '#E3EDF6'
   let bgColor = ''
+  console.log('EMOTION IS', predicted_emotion.toUpperCase())
   switch (predicted_emotion.toUpperCase()) {
     case 'JOY':
       color = '#191A1B'
@@ -37,10 +38,12 @@ const PredictedEmotionResult = ({ predicted_emotion }) => {
       break
 
     case 'STRONG':
+      color = '#1f1f1f'
       bgColor = '#B5B760'
       break
 
     case 'UPSET':
+      color = '#1f1f1f'
       bgColor = '#60B763'
       break
 
@@ -52,48 +55,46 @@ const PredictedEmotionResult = ({ predicted_emotion }) => {
   let EmotionResult = styled.span`
     background-color: ${(props) => props.bgColor};
     color: ${(props) => props.color};
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
     padding-top: 7px;
     padding-bottom: 7px;
     border-radius: 40px;
     font-size: 80%;
     max-width: 20px;
+    margin-right: 5px;
   `
 
   return (
-    <td className="font-primary font-bold uppercase text-[15px] pl-8 text-left pr-7">
-      <EmotionResult bgColor={bgColor} color={color}>
-        {predicted_emotion}
-      </EmotionResult>
-    </td>
+    <EmotionResult bgColor={bgColor} color={color}>
+      {predicted_emotion} - <PredictedEmotionAccuracy accuracy={accuracy} />
+    </EmotionResult>
   )
 }
 
 const PredictedEmotionAccuracy = ({ accuracy }) => {
   let color = ''
-  if (accuracy <= 30.0) {
-    color = '#FA7E7E'
-  } else if (accuracy <= 65.0) {
-    color = '#B5B760'
-  } else {
-    color = '#60B763'
-  }
+  // let accuracy_as_int = parseInt(accuracy)
+  // if (accuracy_as_int <= 30.0) {
+  //   color = '#FA7E7E'
+  // } else if (accuracy_as_int <= 65.0) {
+  //   color = '#B5B760'
+  // } else {
+  //   color = '#60B763'
+  // }
 
   let EmotionAccuracy = styled.span`
     color: ${(props) => props.color};
+    margin-right: 5px;
   `
 
-  return (
-    <td className="font-primary font-bold pl-0 pr-8 py-5 text-[15px]">
-      <EmotionAccuracy color={color}>{accuracy} %</EmotionAccuracy>
-    </td>
-  )
+  return <EmotionAccuracy color={color}>{accuracy}</EmotionAccuracy>
 }
 
 export const ItemResult = ({
   phrase,
   predicted_emotion,
+  accuracy,
   deleteWord,
   props,
 }) => {
@@ -105,8 +106,23 @@ export const ItemResult = ({
       <td className="text-primary-white font-primary font-bold pl-8 py-7 text-[15px] truncate pr-7 lg:max-w-[50px] md:max-w-[50px] sm:max-w-[20px]">
         {phrase}
       </td>
-      <PredictedEmotionResult predicted_emotion={predicted_emotion} />
-      <PredictedEmotionAccuracy accuracy={50.05} />
+      <td className="font-primary font-bold uppercase text-[15px] pl-7">
+        {predicted_emotion.split(', ').map((emotion, index) => {
+          // let accuracy = accuracy.split(', ')
+          return (
+            <PredictedEmotionResult
+              predicted_emotion={emotion}
+              key={index}
+              accuracy={accuracy.split(', ')[index]}
+            />
+          )
+        })}
+      </td>
+      {/* <td className="font-primary font-bold pl-0 pr-8 py-5 text-[15px]">
+        {accuracy.split(', ').map((ac, index) => {
+          return <PredictedEmotionAccuracy key={index} accuracy={ac} />
+        })}
+      </td> */}
       <td className="text-primary-white font-primary ">
         <a
           href="#"

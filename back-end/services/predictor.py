@@ -24,8 +24,8 @@ def predict(words, user, model, vectorizer):
         result = p.analyze_sentence()
         pw = PredictedWord(
             word=word,
-            emotion=result[0],
-            accuracy=result[1],
+            emotion=", ".join(result[0]),
+            accuracy=", ".join([str(x) + "%" for x in result[1]]),
             users_predicted_words_id=users_predicted_words.id,
         )
         db.session.add(pw)
