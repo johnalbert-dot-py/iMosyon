@@ -119,3 +119,9 @@ if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
 
     f.close()
+
+else:
+    print("=== LOADING MODELS ===")
+    model = load(open("./core/iMosyon.pkl", "rb"))
+    with open("./core/vectorizer.pkl", "rb") as f:
+        vectorizer = load(f)

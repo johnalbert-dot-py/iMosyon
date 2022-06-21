@@ -32,8 +32,10 @@ class EmotionPrediction:
     def predict(self) -> Union[str, float]:
         transformed_input = self.vectorizer.transform([self.sentence])
         prediction = self.model.predict(transformed_input)
+        predictionproba = self.model.predict_proba(transformed_input)
+        print(predictionproba)
         result = self.expected_emotions()[prediction[0]]
-        return [["", "", ""], [0.0, 0.0, 0.0]]
+        return [[result, "", ""], [100, 0.0, 0.0]]
 
     def random_prediction(self):
         """
@@ -53,6 +55,6 @@ class EmotionPrediction:
         ]
 
     def analyze_sentence(self):
-        predicted_emotion = self.random_prediction()
-        # predicted_emotion = self.predict()
+        # predicted_emotion = self.random_prediction()
+        predicted_emotion = self.predict()
         return [predicted_emotion[0], predicted_emotion[1]]
