@@ -33,7 +33,10 @@ export const Sidebar = ({ props }) => {
       location.pathname == '/user/dashboard'
     ) {
       seActivePage('home')
-    } else if (location.pathname.includes('/user/dashboard/profile')) {
+    } else if (
+      location.pathname.includes('/user/dashboard/profile') ||
+      location.pathname.includes('/user/dashboard/prediction-result')
+    ) {
       seActivePage('profile')
     } else if (location.pathname.includes('/user/dashboard/settings')) {
       seActivePage('settings')
