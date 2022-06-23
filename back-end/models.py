@@ -1,6 +1,6 @@
 from email.policy import default
 from flask_sqlalchemy import SQLAlchemy
-import string, random
+import string, random, enum
 
 db = SQLAlchemy()
 
@@ -53,3 +53,27 @@ class PredictedWord(db.Model):
 
     def __repr__(self):
         return f"{self.word[:10]}... | {self.emotion}"
+
+
+class EmotionsEnum(enum.Enum):
+    anger = "anger"
+    annoyed = "annoyed"
+    disgust = "disgust"
+    fear = "fear"
+    joy = "joy"
+    others = "others"
+    outraged = "outraged"
+    sadness = "sadness"
+    strong = "strong"
+    upset = "upset"
+
+
+class RecommendedPhrases(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    phrase = db.Column(db.Text, nullable=False)
+    emotion = db.Column(
+        db.Enum(EmotionsEnum), default=EmotionsEnum.anger, nullable=False
+    )
+
+    def __repr__(self):
+        return f"Phrase for {self.emotion}"

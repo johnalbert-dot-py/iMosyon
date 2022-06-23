@@ -139,13 +139,10 @@ export const PredictionResult = () => {
             </div>
             <div className="py-4 mb-2">
               <h4 className="text-1xl text-primary-white font-primary font-bold">
-                Recommended Phrase (base on most predicted emotion)
+                Recommendation:
               </h4>
               <div className="bg-secondary-dark py-3 px-5 text-sm text-primary-white rounded-md">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Repudiandae, corrupti perferendis tenetur dolor inventore ipsam
-                fugiat fuga temporibus quis laudantium voluptatum architecto, et
-                ipsa ratione, itaque sed ut libero quibusdam.
+                {predictionData.recommended_phrase}
               </div>
             </div>
             <table className="table-auto bg-secondary-dark p-4 h-auto lg:w-full rounded-xl drop-shadow-xl">

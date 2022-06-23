@@ -31,11 +31,30 @@ class EmotionPrediction:
 
     def predict(self) -> Union[str, float]:
         transformed_input = self.vectorizer.transform([self.sentence])
-        prediction = self.model.predict(transformed_input)
         predictionproba = self.model.predict_proba(transformed_input)
-        print(predictionproba)
-        result = self.expected_emotions()[prediction[0]]
-        return [[result, "", ""], [100, 0.0, 0.0]]
+        predictionproba = predictionproba.tolist()
+
+        # sort then reverse the array
+        sorted_prediction_proba = predictionproba[0].copy()
+        sorted_prediction_proba.sort()
+        sorted_prediction_proba = sorted_prediction_proba[::-1]
+
+        # get the first 3 and their index
+        first_result = predictionproba[0].index(sorted_prediction_proba[0])
+        second_result = predictionproba[0].index(sorted_prediction_proba[1])
+        third_result = predictionproba[0].index(sorted_prediction_proba[2])
+
+        highest_result = self.expected_emotions()[first_result]
+        mid_result = self.expected_emotions()[second_result]
+        low_result = self.expected_emotions()[third_result]
+        return [
+            [highest_result, mid_result, low_result],
+            [
+                round(sorted_prediction_proba[0] * 100),
+                round(sorted_prediction_proba[1] * 100),
+                round(sorted_prediction_proba[2] * 100),
+            ],
+        ]
 
     def random_prediction(self):
         """

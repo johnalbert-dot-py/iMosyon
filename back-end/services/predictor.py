@@ -1,7 +1,7 @@
 from typing import Union
 from core import predictor
 from random import randint
-from models import User, PredictedWord, UsersPredictedWords, db
+from models import User, PredictedWord, UsersPredictedWords, RecommendedPhrases, db
 
 
 def predict(words, user, model, vectorizer):
@@ -110,7 +110,14 @@ def get_prediction_result(prediction_id, user):
         else:
             least.append("N/A")
 
+    recommended_phrase = RecommendedPhrases.query.filter_by(
+        emotion=highest.lower()
+    ).first()
+
     response["most_predicted_emotion"] = highest
     response["least_predicted_emotion"] = ", ".join(least)
+    response["recommended_phrase"] = (
+        recommended_phrase.phrase if recommended_phrase else "N/A"
+    )
     response["success"] = True
     return response
