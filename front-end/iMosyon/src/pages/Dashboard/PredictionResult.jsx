@@ -66,8 +66,8 @@ export const PredictionResult = () => {
   }
 
   const parseDate = (date) => {
-    return new Date(date).toLocaleString('en-US', {
-      month: 'short',
+    return new Date(date.replace('-', '/')).toLocaleString('en-US', {
+      month: 'long',
       day: '2-digit',
       year: 'numeric',
       timeZone: 'Asia/Manila',
@@ -123,6 +123,29 @@ export const PredictionResult = () => {
                   <h1 className="text-[#FFD873]">Total Sentences</h1>
                   <p>{predictionData.total_words}</p>
                 </div>
+              </div>
+              <div className="p-9 bg-primary-dark rounded-md flex flex-col justify-start items-center grow border border-solid border-[#54595E] border-l-[#55dff7] border-l-4">
+                <div className="text-primary-white font-primary text-xl flex flex-col gap-2 align-middle justify-center items-center">
+                  <h1 className="text-[#55dff7]">Most Predicted Emotion</h1>
+                  <p>{predictionData.most_predicted_emotion}</p>
+                </div>
+              </div>
+              <div className="p-9 bg-primary-dark rounded-md flex flex-col justify-start items-center grow border border-solid border-[#54595E] border-l-[#f75555] border-l-4">
+                <div className="text-primary-white font-primary text-xl flex flex-col gap-2 align-middle justify-center items-center">
+                  <h1 className="text-[#f75555]">Least Predicted Emotion</h1>
+                  <p>{predictionData.least_predicted_emotion}</p>
+                </div>
+              </div>
+            </div>
+            <div className="py-4 mb-2">
+              <h4 className="text-1xl text-primary-white font-primary font-bold">
+                Recommended Phrase (base on most predicted emotion)
+              </h4>
+              <div className="bg-secondary-dark py-3 px-5 text-sm text-primary-white rounded-md">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Repudiandae, corrupti perferendis tenetur dolor inventore ipsam
+                fugiat fuga temporibus quis laudantium voluptatum architecto, et
+                ipsa ratione, itaque sed ut libero quibusdam.
               </div>
             </div>
             <table className="table-auto bg-secondary-dark p-4 h-auto lg:w-full rounded-xl drop-shadow-xl">

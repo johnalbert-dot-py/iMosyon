@@ -1,6 +1,7 @@
 import { React, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
+import moment from 'moment'
 import Cookies from 'js-cookie'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -26,8 +27,8 @@ export const Profile = (props) => {
   }
   const [usersPredictedWords, setUsersPredictedWords] = useState([])
   const parseDate = (date) => {
-    return new Date(date).toLocaleString('en-US', {
-      month: 'short',
+    return new Date(date.replace('-', '/')).toLocaleString('en-US', {
+      month: 'long',
       day: '2-digit',
       year: 'numeric',
       timeZone: 'Asia/Manila',
@@ -120,7 +121,7 @@ export const Profile = (props) => {
                           <h3 className="text-xl">ID: {word.prediction_id}</h3>
                           <p className="text-md m-0 p-0">{word.count} Words</p>
                           <p className="text-md m-0 p-0">
-                            {parseDate(word.created_at)}
+                            {parseDate(word.created_at.toString())}
                           </p>
                         </div>
 

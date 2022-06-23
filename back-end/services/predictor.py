@@ -78,11 +78,15 @@ def get_prediction_result(prediction_id, user):
         return response
 
     prediction_words = user_prediction_words.predicted_words
+    all_emotions = []
 
     response["id"] = str(user_prediction_words.predict_id)
     response["date_created"] = user_prediction_words.created_at.strftime("%m-%d-%Y")
     response["total_words"] = len(prediction_words)
     response["predicted_words"] = []
+    highest = ""
+    least = []
+    current_highest_count = 0
 
     for predicted_word in prediction_words:
         response["predicted_words"].append(
@@ -93,51 +97,20 @@ def get_prediction_result(prediction_id, user):
                 "id": predicted_word.id,
             }
         )
+        all_emotions.append(predicted_word.emotion.split(",")[0])
 
-    all_emotions_in_user = []
-    emotions_in_user = set()
-    for predicted_word in prediction_words:
-        all_emotions_in_user.append(predicted_word.emotion)
-    emotions_in_user.update(all_emotions_in_user)
+    for emotion in all_emotions:
+        if all_emotions.count(emotion) > current_highest_count:
+            highest = emotion
+            current_highest_count = all_emotions.count(highest)
 
-    # most_predicted_emotion
-    emotions_and_count = []
-    for emotion in emotions_in_user:
-        count = 0
-        for predicted_word in prediction_words:
-            if predicted_word.emotion == emotion:
-                count += 1
-        emotions_and_count.append({"emotion": emotion, "count": count})
-    emotions_and_count.sort(key=lambda x: x["count"], reverse=True)
+        if len(all_emotions) > 1:
+            if all_emotions.count(emotion) == 1:
+                least.append(emotion)
+        else:
+            least.append("N/A")
 
-    lowests = ""
-    highest = ""
-
-    current_low = 0
-    current_high = 0
-
-    for emotion in emotions_and_count:
-        if current_low == 0:
-            current_low = emotion["count"]
-            lowests = emotion["emotion"]
-        elif current_low > emotion["count"]:
-            current_low = emotion["count"]
-            lowests = emotion["emotion"]
-
-        if current_high == 0:
-            current_high = emotion["count"]
-            highest = emotion["emotion"]
-        elif current_high < emotion["count"]:
-            current_high = emotion["count"]
-            highest = emotion["emotion"]
-
-    response["most_predicted_emotion"] = {
-        "emotion": highest,
-    }
-
-    response["least_predicted_emotion"] = {
-        "emotion": lowests,
-    }
-
+    response["most_predicted_emotion"] = highest
+    response["least_predicted_emotion"] = ", ".join(least)
     response["success"] = True
     return response
