@@ -3,34 +3,25 @@ import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
-  PointElement,
-  LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend,
 } from 'chart.js'
-import { Line } from 'react-chartjs-2'
+import { Line, Bar } from 'react-chartjs-2'
 import faker from 'faker'
 
 import Sidebar from '@/components/dashboard/sidebar'
 import MainContent from '@/components/dashboard/main-content'
 import Navbar from '@/components/dashboard/navbar'
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-)
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 let delayed
 const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: 'bottom',
+      position: 'top',
     },
     title: {
       display: true,
@@ -49,7 +40,17 @@ const options = {
       return delay
     },
   },
-  tension: 0.3,
+  fill: true,
+  tension: 0.4,
+  scales: {
+    yAxes: [
+      {
+        ticks: {
+          beginAtZero: true,
+        },
+      },
+    ],
+  },
 }
 
 export const Summary = (props) => {
@@ -65,6 +66,7 @@ export const Summary = (props) => {
     'Strong',
     'Upset',
   ]
+
   const [data, setData] = useState({})
   const [datasets, setDataSets] = useState([])
 
@@ -72,19 +74,16 @@ export const Summary = (props) => {
     setDataSets([
       {
         label: 'Dataset 1',
-        data: labels.map(() =>
-          faker.datatype.number({ min: -1000, max: 1000 }),
-        ),
+        data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
         borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 1)',
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        borderWidth: 2,
       },
       {
         label: 'Dataset 2',
-        data: labels.map(() =>
-          faker.datatype.number({ min: -1000, max: 1000 }),
-        ),
+        data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
         borderColor: 'rgb(53, 162, 235)',
-        backgroundColor: 'rgba(53, 162, 235, 1)',
+        backgroundColor: 'rgba(53, 162, 235, 0.5)',
       },
     ])
   }, [])
@@ -126,7 +125,7 @@ export const Summary = (props) => {
           </div>
         </div> */}
         {JSON.stringify(data) !== '{}' ? (
-          <Line options={options} data={data} />
+          <Bar options={options} data={data} />
         ) : (
           ''
         )}
