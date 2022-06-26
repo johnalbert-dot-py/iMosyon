@@ -13,6 +13,9 @@ import Summary from '@/pages/Dashboard/Summary'
 
 import LoginRequired from '@/components/LoginRequired'
 
+import 'react-date-range/dist/styles.css' // main style file
+import 'react-date-range/dist/theme/default.css' // theme css file
+
 const App = () => {
   return (
     <UserAuthProvider>

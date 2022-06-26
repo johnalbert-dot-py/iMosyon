@@ -10,38 +10,35 @@ import {
 } from 'chart.js'
 import { Line, Bar } from 'react-chartjs-2'
 import faker from 'faker'
+import { DateRange } from 'react-date-range'
+import { ToastContainer, toast } from 'react-toastify'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/pro-solid-svg-icons'
 
 import Sidebar from '@/components/dashboard/sidebar'
 import MainContent from '@/components/dashboard/main-content'
 import Navbar from '@/components/dashboard/navbar'
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
-let delayed
+
+const notify = ({ message, error }) => {
+  if (error) {
+    toast.error(message)
+  } else {
+    toast.success(message, {})
+  }
+}
+
 const options = {
   responsive: true,
+  maintainAspectRatio: false,
   plugins: {
-    legend: {
-      position: 'top',
-    },
     title: {
       display: true,
       text: 'iMosyon Data Summary',
     },
   },
-  animation: {
-    onComplete: () => {
-      delayed = true
-    },
-    delay: (context) => {
-      let delay = 0
-      if (context.type === 'data' && context.mode === 'default' && !delayed) {
-        delay = context.dataIndex * 300 + context.datasetIndex * 100
-      }
-      return delay
-    },
-  },
   fill: true,
-  tension: 0.4,
   scales: {
     yAxes: [
       {
@@ -66,24 +63,26 @@ export const Summary = (props) => {
     'Strong',
     'Upset',
   ]
-
+  const [date, setDate] = useState([
+    {
+      startDate: new Date(),
+      endDate: null,
+      key: 'selection',
+    },
+  ])
   const [data, setData] = useState({})
   const [datasets, setDataSets] = useState([])
+
+  const getDataOnDate = () => {}
 
   useEffect(() => {
     setDataSets([
       {
-        label: 'Dataset 1',
+        label: 'Count of Predicted Emotion',
         data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-        borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        borderColor: 'rgb(12,255,212)',
+        backgroundColor: ['rgba(12,255,212, 0.5)', 'rgba(12,255,212, 0.5)'],
         borderWidth: 2,
-      },
-      {
-        label: 'Dataset 2',
-        data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-        borderColor: 'rgb(53, 162, 235)',
-        backgroundColor: 'rgba(53, 162, 235, 0.5)',
       },
     ])
   }, [])
@@ -94,6 +93,11 @@ export const Summary = (props) => {
       datasets: datasets,
     })
   }, [datasets])
+
+  useEffect(() => {
+    console.log('Start Date: ' + date[0].startDate)
+    console.log('End Date: ' + date[0].endDate)
+  }, [date])
 
   return (
     <div className="p-0 overflow-x-hidden">
@@ -106,29 +110,40 @@ export const Summary = (props) => {
         <p className="text-placeholder font-primary font-semibold">
           You can see the summary of your predictions here.
         </p>
-        {/* <div className="py-4 flex flex-row justify-start align-middle gap-5">
-          <div className="p-9 bg-primary-dark rounded-md flex flex-col justify-start items-center grow border border-solid border-[#54595E] border-l-[yellow] border-l-4">
-            <div className="text-primary-white font-primary text-xl flex flex-col gap-2 align-middle justify-center items-center">
-              <h1 className="text-[#FFD873]">Total Sentences Predicted</h1>
-              <p className="h-7">201</p>
+        <div className=" flex flex-row gap-5 justify-start items-center sm:flex-wrap lg:flex-nowrap ">
+          {JSON.stringify(data) !== '{}' ? (
+            <>
+              <div style={{ width: '100%', height: '500px' }}>
+                <Bar options={options} data={data} />
+              </div>
+              <div className="flex flex-col gap-2 items-start justify-center">
+                <DateRange
+                  editableDateInputs={true}
+                  onChange={(item) => setDate([item.selection])}
+                  moveRangeOnFirstSelection={false}
+                  ranges={date}
+                  style={{ width: 'auto', height: 'auto' }}
+                />
+                <button
+                  className="bg-primary-blue w-full px-9 py-2 rounded-md text-center hover:bg-opacity-50 text-primary-white"
+                  onClick={() => {}}
+                >
+                  Export Summary
+                </button>
+              </div>
+            </>
+          ) : (
+            <div className="text-primary-white text-center w-full self-center">
+              <div>
+                <FontAwesomeIcon icon={faSpinner} className="fa-spin text-xl" />
+                <br />
+                <span className="text-placeholder font-sans">
+                  Fetching Data
+                </span>
+              </div>
             </div>
-          </div>
-          <div className="p-9 bg-primary-dark rounded-md flex flex-col justify-start items-center grow border border-solid border-[#54595E] border-l-[#55dff7] border-l-4">
-            <div className="text-primary-white font-primary text-xl flex flex-col gap-2 align-middle justify-center items-center">
-              <h1 className="text-[#55dff7]">Most Predicted Emotion</h1>
-            </div>
-          </div>
-          <div className="p-9 bg-primary-dark rounded-md flex flex-col justify-start items-center grow border border-solid border-[#54595E] border-l-[#f75555] border-l-4">
-            <div className="text-primary-white font-primary text-xl flex flex-col gap-2 align-middle justify-center items-center">
-              <h1 className="text-[#f75555]">Least Predicted Emotion</h1>
-            </div>
-          </div>
-        </div> */}
-        {JSON.stringify(data) !== '{}' ? (
-          <Bar options={options} data={data} />
-        ) : (
-          ''
-        )}
+          )}
+        </div>
       </MainContent>
     </div>
   )
