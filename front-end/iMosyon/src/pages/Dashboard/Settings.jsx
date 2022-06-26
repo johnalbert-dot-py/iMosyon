@@ -33,6 +33,7 @@ export const Settings = (props) => {
   }
 
   const navigate = useNavigate()
+
   return (
     <div className="p-0 overflow-x-hidden">
       <Sidebar />

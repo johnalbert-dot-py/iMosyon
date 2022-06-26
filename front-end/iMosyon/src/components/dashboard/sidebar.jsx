@@ -6,6 +6,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom'
 import {
   faCloudArrowUp,
   faCog,
+  faChartSimple,
   faHouse,
   faUserHair,
 } from '@fortawesome/pro-solid-svg-icons'
@@ -40,6 +41,8 @@ export const Sidebar = ({ props }) => {
       seActivePage('profile')
     } else if (location.pathname.includes('/user/dashboard/settings')) {
       seActivePage('settings')
+    } else if (location.pathname.includes('/user/dashboard/summary')) {
+      seActivePage('summary')
     } else {
       //
     }
@@ -102,6 +105,24 @@ export const Sidebar = ({ props }) => {
             <FontAwesomeIcon icon={faCog} className="text-[#a525cf]" />
             <span className="mt-[2px] ml-[1px] font-primary font-bold tracking-[0.05em]">
               Settings
+            </span>
+          </div>
+        </Link>
+
+        <Link to="/user/dashboard/summary/">
+          <div
+            className={`transition-all w-100 py-4 px-6 flex flex-row justify-start items-center gap-4 rounded-lg ${
+              activePage == 'summary'
+                ? ' bg-primary-dark drop-shadow-xl text-primary-white'
+                : ' text-primary-white text-opacity-50 hover:text-opacity-70 hover:bg-primary-dark hover:bg-opacity-70'
+            }`}
+          >
+            <FontAwesomeIcon
+              icon={faChartSimple}
+              className="text-primary-blue"
+            />
+            <span className="mt-[2px] ml-[1px] font-primary font-bold tracking-[0.05em]">
+              Data Summary
             </span>
           </div>
         </Link>
