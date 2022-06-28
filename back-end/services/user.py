@@ -2,6 +2,8 @@ import bcrypt
 from models import User, db, UsersPredictedWords, PredictedWord
 from flask import jsonify
 from flask_bcrypt import Bcrypt
+from datetime import date, datetime
+from sqlalchemy import and_, func
 
 bcrypt = Bcrypt()
 
@@ -123,6 +125,87 @@ def get_users_predictions(request, user):
         )
 
     return jsonify({"words": words, "success": True}), 200
+
+
+def get_users_predictions_by_date(request, user):
+
+    starting_date_ = request.json.get("starting_date", None)
+    end_date_ = request.json.get("end_date", None)
+
+    if not starting_date_ and not end_date_:
+        return (
+            jsonify({"message": "Starting and End date is required", "success": False}),
+            400,
+        )
+
+    starting_date = starting_date_.split("-")
+    end_date = end_date_.split("-")
+
+    if len(starting_date) != 3 and end_date != 3:
+        return (
+            jsonify(
+                {
+                    "message": "Starting and End should have YEAR-MONTH-DAY",
+                    "success": False,
+                }
+            ),
+            400,
+        )
+
+    starting_year, starting_month, starting_day = starting_date
+    ending_year, ending_month, ending_day = end_date
+
+    UserData = User.query.filter_by(id=user["id"]).first()
+    db.session.add(UserData)
+
+    users_predicted_words = UsersPredictedWords.query.filter_by(user_id=UserData.id)
+
+    if not len(users_predicted_words.all()):
+        return (
+            jsonify({"results": [], "success": True}),
+            200,
+        )
+
+        # if starting_date_ != end_date_:
+    users_predicted_words_filtered_by_date = users_predicted_words.filter(
+        func.date(UsersPredictedWords.created_at)
+        <= datetime(year=int(ending_year), month=int(ending_month), day=int(ending_day))
+    ).filter(
+        func.date(UsersPredictedWords.created_at)
+        >= datetime(
+            year=int(starting_year),
+            month=int(starting_month),
+            day=int(starting_day),
+        )
+    )
+
+    print("Starting Date: " + starting_year, starting_month, starting_day)
+    print("Ending Date: " + ending_year, ending_month, ending_day)
+
+    emotions_counts = {
+        "Anger": 0,
+        "Annoyed": 0,
+        "Disgust": 0,
+        "Fear": 0,
+        "Joy": 0,
+        "Others": 0,
+        "Outraged": 0,
+        "Sadness": 0,
+        "Strong": 0,
+        "Upset": 0,
+    }
+
+    for emotion in emotions_counts:
+        for predicted_word in users_predicted_words_filtered_by_date.all():
+            for word in predicted_word.predicted_words:
+                highest = word.emotion.split(", ")[0]
+                if emotion == highest:
+                    emotions_counts[highest] += 1
+
+    return (
+        jsonify({"results": list(emotions_counts.values()), "success": True}),
+        200,
+    )
 
 
 def delete_users_prediction(request, user):

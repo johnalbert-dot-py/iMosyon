@@ -27,11 +27,10 @@ export const Profile = (props) => {
   }
   const [usersPredictedWords, setUsersPredictedWords] = useState([])
   const parseDate = (date) => {
-    return new Date(date.replace('-', '/')).toLocaleString('en-US', {
-      month: 'long',
+    return new Date(date.replaceAll('-', '/')).toLocaleString('en-US', {
+      month: 'short',
       day: '2-digit',
       year: 'numeric',
-      timeZone: 'Asia/Manila',
     })
   }
 

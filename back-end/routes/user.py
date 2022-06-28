@@ -7,6 +7,7 @@ from services.user import (
     update_users_data,
     update_password,
     delete_users_prediction_word,
+    get_users_predictions_by_date,
 )
 from services.user import get_users_predictions as get_users_predictions_service
 from services.user import delete_users_prediction as delete_users_prediction_service
@@ -78,6 +79,16 @@ def get_users_predictions():
     try:
         user = get_jwt_identity()
         return get_users_predictions_service(request, user)
+    except Exception as e:
+        return (jsonify({"message": "Something went wrong", "reason": str(e)}), 500)
+
+
+@user_data.route("/my-predictions-by-date", methods=["POST", "GET"])
+@jwt_required()
+def get_filterd_users_predictions():
+    try:
+        user = get_jwt_identity()
+        return get_users_predictions_by_date(request, user)
     except Exception as e:
         return (jsonify({"message": "Something went wrong", "reason": str(e)}), 500)
 

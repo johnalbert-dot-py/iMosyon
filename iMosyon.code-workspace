@@ -1,19 +1,20 @@
 {
-    "folders": [
-        {
-            "path": "."
-        }
-    ],
-
-    "settings": {
-        "files.exclude": {
-            "**/__pycache__": true,
-            "**/node_modules": true
-        },
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
-        "editor.formatOnSave": true,
-        "[javascript]": {
-            "editor.defaultFormatter": "esbenp.prettier-vscode"
-        }
+  "folders": [
+    {
+      "path": "."
     }
+  ],
+
+  "settings": {
+    "files.exclude": {
+      "**/__pycache__": true,
+      "**/node_modules": true
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "discord.enabled": true
+  }
 }
